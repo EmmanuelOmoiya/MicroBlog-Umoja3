@@ -1,13 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;500;600;700;800&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: ease-in .015s;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Manrope', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --home-bg: #fff;
+  --header-bg: #eee;
+  --prof-bg: #eee;
+  --prof-banner-bg: #ddd;
+  --prof-img-bg: #ddd;
+  --search-bg: #ddd;
+  --hr-bg: #ccc;
+  --font-color: #101010;
+  --font-color-faded: #f1f1f1af;
+  --trend-bg: #eee;
+  --write-bg: #eee;
+  --connect-bg: #fff;
+  --connect-container-bg: #eee;
+}
+
+[data-theme="dark"] {
+  --header-bg: #393942;
+  --search-bg: #474752;
+  --prof-img-bg:#474752;
+  --home-bg: #2e3034;
+  --connect-bg: #2e3034;
+  --prof-bg: #393942;
+  --prof-banner-bg: #474752;
+  --hr-bg: #40404b;
+  --font-color: #fff;
+  --font-color-faded: #f1f1f1af;
+  --trend-bg: #393942;
+  --write-bg: #393942;
+  --connect-container-bg: #393942;
 }

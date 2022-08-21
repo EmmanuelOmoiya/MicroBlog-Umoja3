@@ -1,0 +1,72 @@
+.login{
+    color: var(--font-color);
+    background-color: var(--home-bg);
+    height: 100vh;
+    padding-top: 2rem;
+}
+
+.login-title{
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+}
+
+.login-container{
+    margin: 2rem;
+    width: 22rem;
+    padding: 2rem;
+    background-color: var(--prof-bg);
+    border-radius: .5rem;
+}
+
+.loginbtn{
+    width: 100%;
+    background-color: #106dfd;
+    height: 2.7rem;
+    margin-top: 1.7rem;
+    text-align: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.emailoglab,
+.passloginp{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: .6rem;
+}
+
+input{
+        width: 100%;
+        margin-bottom: 1.1rem;
+        border: none;
+        font-weight: 500;
+        background-color: var(--search-bg);
+        height: 2.8rem;
+        color: var(--font-color);
+        border-radius: 7px;
+        padding: 1rem;
+        font-size: 1rem;
+    
+}
+
+input::placeholder{
+    font-size: inherit;
+}
+
+.altbt{
+    text-align: left;
+    color: var(--font-color--faded);
+}
+
+.wolt{
+    color: #106dfd;
+    text-decoration: none;
+}

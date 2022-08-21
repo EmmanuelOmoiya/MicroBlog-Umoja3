@@ -1,0 +1,103 @@
+.profile{
+    width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--prof-bg);
+    border-radius: 7px;
+    color: var(--font-color);
+}
+
+.headname{
+    font-weight: 500;
+}
+
+.profiimg{
+    margin-top: -1.9rem;
+    margin-bottom: 1.3rem;
+    padding-top: 1px;
+    height: 4rem;
+    position: relative;
+    width: 4rem;
+    margin-left: auto;
+    align-items: center;
+    margin-right: auto;
+    background-color: var(--prof-bg);
+    border-radius: 50%
+}
+
+.imgm{
+    width: calc(4rem - 7px);
+    height: calc(4rem - 7px);
+    background-color: var(--prof-img-bg);
+    text-align: center;
+    margin-top: 2px;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profDetails{
+    padding: 2rem;
+    padding-top: 0;
+}
+
+.profBanner{
+    height: 7rem;
+    position: relative;
+    width: 100%;
+    background-color: var(--prof-banner-bg);
+    border-radius: 7px 7px 0px 0px;
+}
+
+.profdethead{
+    margin-bottom: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.proffoll{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.profollowing,
+.profollowers{
+    align-items: center;
+    text-align: center;
+}
+
+.folnum{
+    font-weight: 500;
+}
+
+.folname,
+.headaddr{
+    font-size: .9rem;
+    opacity: .7;
+}
+
+.headaddr{
+    margin-bottom: 1.5rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profedit{
+    width: 100%;
+    background-color: #106dfd;
+    height: 2.4rem;
+    text-align: center;
+    align-items: center;
+    font-size: .9rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    margin-top: .7rem;
+    cursor: pointer;
+    font-weight: 500;
+}

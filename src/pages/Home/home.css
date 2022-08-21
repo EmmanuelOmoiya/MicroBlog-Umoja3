@@ -1,0 +1,14 @@
+.home{
+    background-color: var(--home-bg);
+    height: 100%;
+}
+
+.homeBody{
+    padding-top: 2.8rem;
+    display: flex;
+    justify-content: space-between;
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    color: var(--font-color);
+}

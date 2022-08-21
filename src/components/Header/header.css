@@ -1,0 +1,96 @@
+@font-face {
+    font-family: Grand-Hotel;
+    src: url(../../assets/font/GrandHotel-Regular.ttf);
+}
+
+.logo{
+    font-family: Grand-Hotel;
+    color: var(--font-color);
+    letter-spacing: .05em;
+}
+
+.lolink{
+    text-decoration: none;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    height: 2.4rem;
+    width: auto;
+    padding: 2.1rem 4.4rem;
+    background-color: var(--header-bg);
+    text-align: center;
+    align-items: center;
+}
+
+.lilinks{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.links{
+    margin-right: 2rem;
+}
+
+.linkd{
+    text-decoration: none;
+}
+
+.link{
+    color: var(--font-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.link:hover{
+    color: rgb(249, 188, 195);
+}
+
+.contr{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cids{
+    list-style: none;
+    font-size: 1.3rem;
+    margin-right: 2rem;
+}
+
+.iconNav{
+    color: var(--font-color);
+}
+
+.searchNav{
+    width: 9.5rem;
+    height: 2.6rem;
+    padding: .5rem;
+    padding-left: 1rem;
+    border: none;    
+    background-color: var(--search-bg);
+    margin-bottom: 0;
+    margin-right: 1rem;
+    color: var(--font-color);
+    font-family: 'Manrope', sans-serif;
+    border-radius: 7px;
+}
+
+.searchNav::placeholder{
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.leftNav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profimg{
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background-color: var(--prof-img-bg);
+}

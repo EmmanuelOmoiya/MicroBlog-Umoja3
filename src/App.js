@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import {loadStdlib} from '@reach-sh/stdlib';
+import { ALGO_MyAlgoConnect as MyAlgoConnect } from '@reach-sh/stdlib';
+import { useEffect, useState } from 'react';
+import * as backend from './build/index.main.mjs';
+import { Home, Login, Signup, ConnectAccount, WritePost, MyBlogPosts } from './pages';
+import { Header } from './components';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Protected from './ProtectedRoute';
+const reach = loadStdlib('ALGO');
+reach.setWalletFallback(reach.walletFallback( { providerEnv: 'TestNet', MyAlgoConnect } ));
+const fmt = (x) => reach.formatCurrency(x, 4);
+ function App() {
+  const isConnected = window.localStorage.getItem('user');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={
+          <Protected isConnected={isConnected}>
+            <Home reachsh={reach}/>
+          </Protected>
+        } exact/>
+        <Route path="/login" element={<Login reachsh={reach}/>} />
+        <Route path='/signup' element={<Signup/>} />
+        <Route path="/connect-account" element={<ConnectAccount reachsh={reach}/>} />
+        <Route path="/write-post" element={<WritePost reachsh={reach}/>} />
+        <Route path="/my-posts" element={<MyBlogPosts />} />
+      </Routes>
+    </Router>
   );
 }
 

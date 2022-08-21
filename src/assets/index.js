@@ -1,0 +1,1 @@
+export { default as FaAlgo } from './icons/algorandlogo.svg';
