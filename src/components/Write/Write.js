@@ -8,12 +8,6 @@ const Write = () => {
     const [ isWrite, setIsWrite ] = useState(true);
     return (
         <div className="write-container">
-            <div className="write-choose">
-                <div className="wchoose1">
-                    <p className="wchoosen"> <TbPhoto className="photo"/>Post a photo</p>
-                    <span className="wchosesh"></span>
-                </div>
-            </div>
             {
                 isWrite ?
                 <div className="writechoic">

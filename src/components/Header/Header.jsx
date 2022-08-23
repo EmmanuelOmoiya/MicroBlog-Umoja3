@@ -7,7 +7,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import Darkmode from '../DarkMode/Darkmode';
 
 const Header = () => {
-    const isConnected = window.localStorage.getItem('user');
+    const isConnected = window.sessionStorage.getItem('user');
     return(
         <>
         {

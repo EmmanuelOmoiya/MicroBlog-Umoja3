@@ -14,8 +14,7 @@ const Connect = () => {
     const fmt = (x) => reach.formatCurrency(x, 4);
     const [address, setAddress] = useState('');
     const [isConnecting, setIsConnecting] = useState(false);
-    const [account, setAccount] = useState({});
-    console.log(account);
+    const [ account, setAccount] = useState({})
     const connect = async (address) =>{
         setIsConnecting(true);
         let result = ""
@@ -26,8 +25,11 @@ const Connect = () => {
             mnemonic = true
         }
         try {
-          const account = mnemonic ? await reach.newAccountFromMnemonic(address) : await reach.getDefaultAccount();
-          setAccount(account);
+          let accountC = mnemonic ? await reach.newAccountFromMnemonic(address) : await reach.getDefaultAccount();
+          setAccount(accountC);
+          console.log(account);
+          console.log(account);
+          alert(account);
           {/*const theNFT = await reach.launchToken(account, 'post', 'PST', { supply: 1 });
           const nftId = theNFT.id;
           const nftOwner = theNFT.owner
@@ -38,20 +40,34 @@ const Connect = () => {
           const balance = reach.formatCurrency(await reach.balanceOf(account));
         alert(balance)*/}
           setIsConnecting(false)
-          window.localStorage.setItem('user', account.getAddress());
-          window.location.replace('/');
+          window.sessionStorage.setItem('user', accountC.getAddress());
           result = 'success'; 
         } catch (error) {
             setIsConnecting(false);
           result = `Failed. \n Error: ${error}`;
         }
         console.log(result);
-}
+    }
+
     let isEth = false;
     if(network === 'ETH'){
         isEth = true;
     } else {
         isEth = false;
+    }
+    const confirm = async() =>{
+        console.log(reach);
+        try{
+        console.log(account)
+            const theNFT = await reach.launchToken(account, 'post', 'PST', { metadata: "Love is not good folks!" });
+          const nftId = theNFT.id;
+          alert(nftId);
+          const metadata = await account.tokenMetadata(theNFT.name);
+          alert(metadata)
+          console.log(metadata);
+        } catch(error){
+            console.log(`Error: ${error}`);
+        }
     }
     return (
         <div className="connect">
@@ -74,6 +90,7 @@ const Connect = () => {
             <button onClick={() => connect(address)} className="connectBtn">Connect to  account</button>
             }
             </div>
+            <button className="connectBtn" onClick={()=>confirm()}>Confirm</button>
         </div>
     );
 }

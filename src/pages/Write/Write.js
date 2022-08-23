@@ -2,7 +2,7 @@ import './write.css';
 import { useState } from 'react'; 
 import { loadStdlib } from '@reach-sh/stdlib';
 
-const Write = () =>{
+const Write = (account) =>{
     /*sconst [ppostTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useeState('');
     const authorAddr = window.localStorage.getItem('user');
@@ -12,15 +12,34 @@ const Write = () =>{
         const post = await reach.launchToken(account, 'bumple', 'NFT', { supply: 1 });
     } */
     const reach = loadStdlib();
-
+    const [ isPublishing, setIsPublishing ] = useState(false)
     const Publish = async() => {
+        alert('Publishing');
+        setIsPublishing(true);
+        alert(title);
+        try {
+        const post = await reach.launchToken(account, 'bumple', 'NFT', { supply: 1 });
+        setIsPublishing(false);
+        alert(post.id);
+        }catch(error){
+            setIsPublishing(false);
+            alert(error);
+            console.log(`Error: ${error}`);
+        }
     }
     const [title, setTitle] = useState('');
     const [post, setPost] = useState('');
+    const content = {title, post};
     return(
         <div className="write-post">
             <div className="post-container">
-                <button className="publish-post" onClick={Publish()}>Publish</button>
+                {
+                    isPublishing ?
+                    <button className="publish-post" >Publishing...</button>
+                :
+                <button className="publish-post" onClick={()=>Publish()}>Publish</button>
+
+                }
                 <div className="post-title">
                     <input type="text" placeholder="Post Title..." className="post-tinps" value={title} onChange={(e)=> setTitle(e.target.value)}/>
                 </div>

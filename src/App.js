@@ -14,20 +14,21 @@ const reach = loadStdlib('ALGO');
 reach.setWalletFallback(reach.walletFallback( { providerEnv: 'TestNet', MyAlgoConnect } ));
 const fmt = (x) => reach.formatCurrency(x, 4);
  function App() {
-  const isConnected = window.localStorage.getItem('user');
+  const isConnected = window.sessionStorage.getItem('user');
+  const [account, setAccount] = useState({});
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={
           <Protected isConnected={isConnected}>
-            <Home reachsh={reach}/>
+            <Home reachsh={reach} account={account}/>
           </Protected>
         } exact/>
         <Route path="/login" element={<Login reachsh={reach}/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path="/connect-account" element={<ConnectAccount reachsh={reach}/>} />
-        <Route path="/write-post" element={<WritePost reachsh={reach}/>} />
+        <Route path="/connect-account" element={<ConnectAccount account={account} setAccount={setAccount}/>} />
+        <Route path="/write-post" element={<WritePost account={account}/>} />
         <Route path="/my-posts" element={<MyBlogPosts />} />
       </Routes>
     </Router>

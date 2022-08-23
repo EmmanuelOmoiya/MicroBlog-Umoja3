@@ -1,4 +1,4 @@
-import { Trends, Profile, Write, WhotoFollow } from '../../components';
+import { Trends, Profile, Write } from '../../components';
 import './home.css';
 
 const Home = () => {
@@ -13,7 +13,6 @@ const Home = () => {
                 </div>
                 <div className="homelast">
                     <Trends />
-                    <WhotoFollow />
                 </div>
             </div>
         </div>
