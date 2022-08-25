@@ -2,7 +2,7 @@ import './profile.css';
 import {  useEffect, useState } from 'react';
 
 const Profile = () => {
-        const address = window.localStorage.getItem('user');
+        const address = window.sessionStorage.getItem('user');
     return (
         <div className="profile">
             <div className="profBanner">
