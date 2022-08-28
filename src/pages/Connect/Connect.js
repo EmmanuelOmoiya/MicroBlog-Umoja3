@@ -3,6 +3,8 @@ import {loadStdlib, unsafeAllowMultipleStdlibs} from '@reach-sh/stdlib';
 import { ALGO_MyAlgoConnect as MyAlgoConnect } from '@reach-sh/stdlib';
 import './connect.css';
 import { FaEthereum } from 'react-icons/fa';
+import * as backend from '../index.main.mjs';
+
 // import { FaAlgo } from '../../assets';
 
 const Connect = () => {
@@ -41,10 +43,13 @@ const Connect = () => {
         alert(balance)*/}
           setIsConnecting(false)
           window.sessionStorage.setItem('user', accountC.getAddress());
+          window.location.replace('/');
+
           result = 'success'; 
         } catch (error) {
             setIsConnecting(false);
           result = `Failed. \n Error: ${error}`;
+          alert(error);
         }
         console.log(result);
     }
@@ -55,16 +60,22 @@ const Connect = () => {
     } else {
         isEth = false;
     }
+    const A = {
+        request: "20 Algos",
+        info: "Why is it?"
+    }
     const confirm = async() =>{
         console.log(reach);
         try{
-        console.log(account)
-            const theNFT = await reach.launchToken(account, 'post', 'PST', { metadata: "Love is not good folks!" });
+        console.log(account);
+        const ctc =  account.contract(backend);
+        await backend.Alice(ctc, A)
+          /*  const theNFT = await reach.launchToken(account, 'post', 'PST', { metadata: "Love is not good folks!" });
           const nftId = theNFT.id;
           alert(nftId);
           const metadata = await account.tokenMetadata(theNFT.name);
           alert(metadata)
-          console.log(metadata);
+          console.log(metadata);*/
         } catch(error){
             console.log(`Error: ${error}`);
         }
@@ -90,7 +101,7 @@ const Connect = () => {
             <button onClick={() => connect(address)} className="connectBtn">Connect to  account</button>
             }
             </div>
-            <button className="connectBtn" onClick={()=>confirm()}>Confirm</button>
+            {/*<button className="connectBtn" onClick={()=>confirm()}>Confirm</button>*/}
         </div>
     );
 }
