@@ -1,6 +1,7 @@
 import './write.css';
 import { useState } from 'react'; 
 import { loadStdlib } from '@reach-sh/stdlib';
+import * as backend from '../index.main.mjs';
 
 const Write = (account) =>{
     /*sconst [ppostTitle, setPostTitle] = useState('');
@@ -13,12 +14,17 @@ const Write = (account) =>{
     } */
     const reach = loadStdlib();
     const [ isPublishing, setIsPublishing ] = useState(false)
+    const A = {
+        request: "20 Algos",
+        info: "Why is it?"
+    }
     const Publish = async() => {
         alert('Publishing');
         setIsPublishing(true);
         alert(title);
         try {
-        const post = await reach.launchToken(account, 'bumple', 'NFT', { supply: 1 });
+        const ctc =  account.contract(backend);
+        await backend.Alice(ctc, A)
         setIsPublishing(false);
         alert(post.id);
         }catch(error){

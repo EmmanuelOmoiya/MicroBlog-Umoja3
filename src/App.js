@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import * as backend from './build/index.main.mjs';
 import { Home, Login, Signup, ConnectAccount, WritePost, MyBlogPosts } from './pages';
 import { Header } from './components';
+import { AccountContextProvider } from './pages/AccountContext';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,6 +18,7 @@ const fmt = (x) => reach.formatCurrency(x, 4);
   const isConnected = window.sessionStorage.getItem('user');
   const [account, setAccount] = useState({});
   return (
+    <AccountContextProvider>
     <Router>
       <Header />
       <Routes>
@@ -28,10 +30,19 @@ const fmt = (x) => reach.formatCurrency(x, 4);
         <Route path="/login" element={<Login reachsh={reach}/>} />
         <Route path='/signup' element={<Signup/>} />
         <Route path="/connect-account" element={<ConnectAccount account={account} setAccount={setAccount}/>} />
-        <Route path="/write-post" element={<WritePost account={account}/>} />
-        <Route path="/my-posts" element={<MyBlogPosts />} />
+        <Route path="/write-post" element={
+          <Protected isConnected={isConnected}>
+            <WritePost account={account} setAccount={setAccount}/>
+          </Protected>
+          } />
+        <Route path="/my-posts" element={
+          <Protected isConnected={isConnected}>
+            <MyBlogPosts />
+          </Protected>
+        } />
       </Routes>
     </Router>
+    </AccountContextProvider>
   );
 }
 

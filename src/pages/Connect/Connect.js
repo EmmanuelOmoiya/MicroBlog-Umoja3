@@ -1,85 +1,18 @@
-import { useState } from "react";
-import {loadStdlib, unsafeAllowMultipleStdlibs} from '@reach-sh/stdlib';
-import { ALGO_MyAlgoConnect as MyAlgoConnect } from '@reach-sh/stdlib';
 import './connect.css';
 import { FaEthereum } from 'react-icons/fa';
-import * as backend from '../index.main.mjs';
+import { useAccountContext } from '../AccountContext';
 
 // import { FaAlgo } from '../../assets';
 
 const Connect = () => {
-    const [network, setNetwork] = useState('');
-    const reach = loadStdlib(network);
-    console.log(network);
-    unsafeAllowMultipleStdlibs();
-    reach.setWalletFallback(reach.walletFallback( { providerEnv: 'TestNet', MyAlgoConnect } ));
-    const fmt = (x) => reach.formatCurrency(x, 4);
-    const [address, setAddress] = useState('');
-    const [isConnecting, setIsConnecting] = useState(false);
-    const [ account, setAccount] = useState({})
-    const connect = async (address) =>{
-        setIsConnecting(true);
-        let result = ""
-        let mnemonic;
-        if(address === ""){
-            mnemonic = false
-        } else {
-            mnemonic = true
-        }
-        try {
-          let accountC = mnemonic ? await reach.newAccountFromMnemonic(address) : await reach.getDefaultAccount();
-          setAccount(accountC);
-          console.log(account);
-          console.log(account);
-          alert(account);
-          {/*const theNFT = await reach.launchToken(account, 'post', 'PST', { supply: 1 });
-          const nftId = theNFT.id;
-          const nftOwner = theNFT.owner
-          alert(nftId, nftOwner);
-          const metadata = account.tokenMetadata(theNFT);
-          alert(metadata)
-          console.log(metadata);
-          const balance = reach.formatCurrency(await reach.balanceOf(account));
-        alert(balance)*/}
-          setIsConnecting(false)
-          window.sessionStorage.setItem('user', accountC.getAddress());
-          window.location.replace('/');
-
-          result = 'success'; 
-        } catch (error) {
-            setIsConnecting(false);
-          result = `Failed. \n Error: ${error}`;
-          alert(error);
-        }
-        console.log(result);
-    }
-
+    const { connect, reach, account, setAccount, network, setNetwork, isConnecting, address, setAddress } =  useAccountContext();
     let isEth = false;
     if(network === 'ETH'){
         isEth = true;
     } else {
         isEth = false;
     }
-    const A = {
-        request: "20 Algos",
-        info: "Why is it?"
-    }
-    const confirm = async() =>{
-        console.log(reach);
-        try{
-        console.log(account);
-        const ctc =  account.contract(backend);
-        await backend.Alice(ctc, A)
-          /*  const theNFT = await reach.launchToken(account, 'post', 'PST', { metadata: "Love is not good folks!" });
-          const nftId = theNFT.id;
-          alert(nftId);
-          const metadata = await account.tokenMetadata(theNFT.name);
-          alert(metadata)
-          console.log(metadata);*/
-        } catch(error){
-            console.log(`Error: ${error}`);
-        }
-    }
+    
     return (
         <div className="connect">
             <h2 className='con-title'>Connect to your account</h2>
@@ -101,7 +34,6 @@ const Connect = () => {
             <button onClick={() => connect(address)} className="connectBtn">Connect to  account</button>
             }
             </div>
-            {/*<button className="connectBtn" onClick={()=>confirm()}>Confirm</button>*/}
         </div>
     );
 }
