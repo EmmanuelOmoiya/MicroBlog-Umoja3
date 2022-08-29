@@ -2,6 +2,7 @@ import './write.css';
 import { useState } from 'react'; 
 import { loadStdlib } from '@reach-sh/stdlib';
 import * as backend from '../index.main.mjs';
+import { useAccountContext } from '../AccountContext';
 
 const Write = (account) =>{
     /*sconst [ppostTitle, setPostTitle] = useState('');
@@ -14,28 +15,21 @@ const Write = (account) =>{
     } */
     const reach = loadStdlib();
     const [ isPublishing, setIsPublishing ] = useState(false)
-    const A = {
-        request: "20 Algos",
-        info: "Why is it?"
-    }
+    const { Post } =  useAccountContext();
+    const [title, setTitle] = useState('');
+    const [post, setPost] = useState('');
+    const Post = {title, post};
     const Publish = async() => {
         alert('Publishing');
         setIsPublishing(true);
-        alert(title);
-        try {
-        const ctc =  account.contract(backend);
-        await backend.Alice(ctc, A)
-        setIsPublishing(false);
-        alert(post.id);
-        }catch(error){
-            setIsPublishing(false);
+        alert(title, content);
+        try{
+            Post(Post);
+        } catch(error){
             alert(error);
-            console.log(`Error: ${error}`);
         }
+        
     }
-    const [title, setTitle] = useState('');
-    const [post, setPost] = useState('');
-    const content = {title, post};
     return(
         <div className="write-post">
             <div className="post-container">
