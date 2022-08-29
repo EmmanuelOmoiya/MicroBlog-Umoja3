@@ -18,13 +18,13 @@ const Write = (account) =>{
     const { Post } =  useAccountContext();
     const [title, setTitle] = useState('');
     const [post, setPost] = useState('');
-    const Post = {title, post};
+    const postc = {title, post};
     const Publish = async() => {
         alert('Publishing');
         setIsPublishing(true);
         alert(title, content);
         try{
-            Post(Post);
+            Post(postc);
         } catch(error){
             alert(error);
         }
