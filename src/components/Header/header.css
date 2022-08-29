@@ -112,7 +112,9 @@
         cursor: pointer;
     }
 
-    .contr{
+    .contr,
+    .searchNav,
+    .dmd{
         display: none;
     }
 

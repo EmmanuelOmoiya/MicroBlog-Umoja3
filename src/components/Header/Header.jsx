@@ -39,11 +39,31 @@ const Header = () => {
                 </li>
             </div>
             <div className="leftNav">
-                <Darkmode />
+                <Darkmode className="dmd"/>
                 <input type="text" className="searchNav" placeholder="Search posts"/>
                 <p className="profimg">
-
-                </p>
+            </p>
+            </div>
+            <div className={ show ? "dropdown show" : "dropdown" }>
+                    <div className="hdr">
+                        <div className="drclose">
+                            <span className="drbar"></span>
+                            <span className="drbar"></span>
+                        </div>
+                        <Link to="/" className="drlolink"><h2 className="logo">MicroBlog</h2></Link>
+                    </div>
+                    <ul className="drlinks">
+                        <li className="drlink">
+                            <Link to="/home"><p className="iconNav"/> Home</Link>
+                        </li>
+                        <li className="drlink">
+                            <Link to="/write"><p className="iconNav"/>Write</Link>
+                        </li>
+                        <li className="drlink">
+                            <Link to="/search"><p className="iconNav"/>Search</Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         :
