@@ -22,7 +22,7 @@ const Write = (account) =>{
     const Publish = async() => {
         alert('Publishing');
         setIsPublishing(true);
-        alert(title, content);
+        alert(title, post);
         try{
             Post(postc);
         } catch(error){
