@@ -10,12 +10,8 @@ import {
   Route,
 } from "react-router-dom";
 import Protected from './ProtectedRoute';
-const reach = loadStdlib('ALGO');
-reach.setWalletFallback(reach.walletFallback( { providerEnv: 'TestNet', MyAlgoConnect } ));
-const fmt = (x) => reach.formatCurrency(x, 4);
  function App() {
   const isConnected = window.sessionStorage.getItem('user');
-  const [account, setAccount] = useState({});
   return (
     <AccountContextProvider>
     <Router>
@@ -23,15 +19,13 @@ const fmt = (x) => reach.formatCurrency(x, 4);
       <Routes>
         <Route path="/" element={
           <Protected isConnected={isConnected}>
-            <Home reachsh={reach} account={account}/>
+            <Home />
           </Protected>
         } exact/>
-        <Route path="/login" element={<Login reachsh={reach}/>} />
-        <Route path='/signup' element={<Signup/>} />
-        <Route path="/connect-account" element={<ConnectAccount account={account} setAccount={setAccount}/>} />
+        <Route path="/connect-account" element={<ConnectAccount />} />
         <Route path="/write-post" element={
           <Protected isConnected={isConnected}>
-            <WritePost account={account} setAccount={setAccount}/>
+            <WritePost />
           </Protected>
           } />
         <Route path="/my-posts" element={
