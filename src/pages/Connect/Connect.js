@@ -31,7 +31,7 @@ const Connect = () => {
             {isEth ?
             <button onClick={() => connect(address)} className="connectBtn"> { isConnecting ? `Connecting` : 'Connect' } to <FaEthereum /> account </button>
             :
-            <button onClick={() => connect(address)} className="connectBtn">Connect to  account</button>
+            <button onClick={() => connect(address)} className="connectBtn">{ isConnecting ? `Connecting` : 'Connect' } to  account</button>
             }
             </div>
         </div>

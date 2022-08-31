@@ -1,7 +1,4 @@
-import {loadStdlib} from '@reach-sh/stdlib';
-import { ALGO_MyAlgoConnect as MyAlgoConnect } from '@reach-sh/stdlib';
-import { useEffect, useState } from 'react';
-import { Home, Login, Signup, ConnectAccount, WritePost, MyBlogPosts } from './pages';
+import { ConnectAccount, Sub, Main } from './pages';
 import { Header } from './components';
 import { AccountContextProvider } from './pages/AccountContext';
 import {
@@ -17,22 +14,12 @@ import Protected from './ProtectedRoute';
     <Router>
       <Header />
       <Routes>
+        <Route path="/connect-account" element={<ConnectAccount />} />
         <Route path="/" element={
           <Protected isConnected={isConnected}>
-            <Home />
+            <Main />
           </Protected>
-        } exact/>
-        <Route path="/connect-account" element={<ConnectAccount />} />
-        <Route path="/write-post" element={
-          <Protected isConnected={isConnected}>
-            <WritePost />
-          </Protected>
-          } />
-        <Route path="/my-posts" element={
-          <Protected isConnected={isConnected}>
-            <MyBlogPosts />
-          </Protected>
-        } />
+        } exact />
       </Routes>
     </Router>
     </AccountContextProvider>
