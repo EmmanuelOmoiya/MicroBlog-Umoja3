@@ -37,7 +37,7 @@ const Header = () => {
                             <Link to="/" className="lolink"><h2 className="logo">NullFun()</h2></Link>
                             <div className="contr">
                                 <li className="cids">
-                                    <Link to="/" clasName="ink"><p className="hdhm lnk">Home</p></Link>
+                                    <Link to="/" className="ink"><p className="hdhm lnk">Home</p></Link>
                                 </li>
                                 <li className="cids">
                                     <p className="hdhm lnk" onClick={()=>selectCreate()}>Create</p>
@@ -100,11 +100,11 @@ const Header = () => {
                                     <span className="drbar"></span>
                                     <span className="drbar"></span>
                                 </div>
-                                <Link to="/" className="drlolink"><h2 className="logo">MicroBlog</h2></Link>
+                                <Link to="/" className="drlolink"><h2 className="logo">NullFun()</h2></Link>
                             </div>
                             <ul className="drlinks">
                                     <li className="drlink">
-                                        <Link to="/"  className="ink drink"><p className="iconNav" onClick={()=>toggle()}/> Home</Link>
+                                        <Link to="/"  className="ink drink"onClick={()=>toggle()}><p className="iconNav" onClick={()=>toggle()}/> Home</Link>
                                     </li>
                                     <button className="connectBtn gtstd" onClick={()=>{
                                         toggle()
