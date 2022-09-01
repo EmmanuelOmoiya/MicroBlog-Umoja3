@@ -80,7 +80,7 @@ const Main = () =>{
     } else if(view === 'Deploy'){
         return(
             <div className="main">
-                <p className="nmstr">Creating Stream: {postName}</p>
+                <p className="nmstr">Creating Stream: <b>{postName}</b></p>
                 {deploying?
                 <button className="connectBtn cntu" >Creating Stream...</button>
                 :
@@ -91,7 +91,7 @@ const Main = () =>{
     } else if(view === 'WaitingForAttacher'){
         return(
         <div className="main">
-            <h2 className="cntrdep">Subscribers can join by entering the following contract information</h2>
+            <h2 className="cntrdep nmstr">Subscribers can join by entering the following contract information</h2>
             <pre className="ccntrinfo">{JSON.stringify(contractInfo)}</pre>
             <button className="connect" onClick={(e)=>copyToClipborad(e.currentTarget)}>Copy to clipboard</button>
         </div>
@@ -174,7 +174,7 @@ const Main = () =>{
     } else if(view === 'Subscriber'){
         return (
         <div className="main">
-            <h2 className="pstinf">Please paste the contract info to join a stream:</h2>
+            <h2 className="pstinf nmstr">Please paste the contract info to join a stream:</h2>
             <textarea className="pinfctr" value={pstiinf} onChange={(e)=>setPstiinf(e.target.value)} />
             {attaching ?
             <button className="attachr connectBtn">Chill a moment </button>
@@ -192,7 +192,7 @@ const Main = () =>{
     } else if(view === "chooseSubscribing"){
         return(
             <div className="main">
-                <p className="choosesubscr">Subscribe to {postName}</p>
+                <p className="choosesubscr nmstr">Subscribe to {postName}</p>
                 <div className="subcribechoid">
                     <button className="connectBtn" onClick={()=>subscribe('yes')}>Confirm</button>
                     <button className="connectBtn no" onClick={()=>subscribe('No')}>Leave</button>
@@ -202,7 +202,7 @@ const Main = () =>{
     } else if(view === 'SubscriberAttached'){
         return(
         <div className="main">
-            <h2 className="subshotit">The title of the post is {title}</h2>
+            <h2 className="subshotit nmstr">The title of the post is {title}</h2>
             <p className="authorsub">The author is : {creator} </p>
             <button className="connectBtn" onClick={()=>setView('PostSection')}>View Post </button>
         </div>
@@ -234,7 +234,7 @@ const Main = () =>{
     } else if(view === "ContinuePost"){
         return(
         <div className="main">
-            <p className="cntipst">Do you want to continue or stop posting?</p>
+            <p className="cntipst nmstr">Do you want to continue or stop posting?</p>
             <div className="conchis">
                 <button className="connectBtn" onClick={()=>Continue('Continue')}>Continue</button>
                 <button className="connectBtn" onClick={()=>Continue('Stop')}>Stop</button>

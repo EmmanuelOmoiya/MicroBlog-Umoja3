@@ -52,6 +52,7 @@
 
     .main{
         padding: 2rem;
+        height: calc(100vh - 5.4rem);
     }
 
     .nmstr{
