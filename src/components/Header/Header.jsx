@@ -37,7 +37,7 @@ const Header = () => {
                             <Link to="/" className="lolink"><h2 className="logo">NullFun()</h2></Link>
                             <div className="contr">
                                 <li className="cids">
-                                    <Link to="/" className="ink"><p className="hdhm lnk">Home</p></Link>
+                                    <Link to="/" onClick={()=>toggle()} className="ink"><p className="hdhm lnk">Home</p></Link>
                                 </li>
                                 <li className="cids">
                                     <p className="hdhm lnk" onClick={()=>selectCreate()}>Create</p>
@@ -65,7 +65,7 @@ const Header = () => {
                                 </div>
                                 <ul className="drlinks">
                                     <li className="drlink">
-                                        <Link to="/home"  className="ink drink"><p className="iconNav"> Home</p></Link>
+                                        <Link to="/" onClick={()=>toggle()}  className="ink drink"><p className="iconNav"> Home</p></Link>
                                     </li>
                                     <li className="drlink">
                                        <p className="drink" onClick={()=>{

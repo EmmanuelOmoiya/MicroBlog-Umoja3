@@ -41,6 +41,8 @@
 @media screen and (max-width: 480px) {
     .BsCh{
         max-width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .chcrd{
