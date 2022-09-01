@@ -191,7 +191,7 @@
         transition: 0.3s;
         width: 80%;
         padding: 2rem;
-        margin-top: 30rem;
+        margin-top: 0rem;
         position: fixed;
         height: 100vh;
         background-color: var(--header-bg);

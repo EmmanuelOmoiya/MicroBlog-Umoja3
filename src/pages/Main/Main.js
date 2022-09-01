@@ -46,7 +46,7 @@ const Main = () =>{
         return(
             <div className="main">
                 <h2 className="nmstr">What is the name of your Stream?</h2>
-                <input type="text" placeholder="Input name of post" value={postName} onChange={(e)=> setPostName(e.target.value)}/>
+                <input className="inolr" type="text" placeholder="Input name of post" value={postName} onChange={(e)=> setPostName(e.target.value)}/>
                 <button className="connectBtn cntu" onClick={()=> setStreamName(postName)}>Create </button>
             </div>
         )
