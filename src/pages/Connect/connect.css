@@ -2,7 +2,7 @@
     background-color: var(--connect-bg);
     color: var(--font-color);
     padding-top: 2rem;
-    height: 50rem;
+    height: calc(100vh -4.2rem);
 }
 
 .con-title{

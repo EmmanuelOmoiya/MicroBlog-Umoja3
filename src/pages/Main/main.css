@@ -1,0 +1,50 @@
+.main{
+    background-color: var(--home-bg);
+    color: var(--font-color);
+}
+
+.BsCh{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 67%;
+    height: auto;
+    padding: 1rem;
+    margin-left: auto;
+    margin-top: 2rem;
+    height: 100%;
+
+    margin-right: auto;
+}
+
+.chcrd{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 7px;
+    background-color: var(--header-bg);
+    margin-right: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.chcrd:hover{
+    scale: 1.1;
+    transition: .2s ease-in-out;
+}
+
+.pso{
+    font-weight: bolder;
+}
+
+
+@media screen and (max-width: 480px) {
+    .BsCh{
+        max-width: 100%;
+    }
+
+    .chcrd{
+        width: 69%;
+        height: 11rem;
+    }
+}

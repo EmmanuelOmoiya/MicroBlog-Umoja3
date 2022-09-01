@@ -97,19 +97,68 @@
     height: 2.6rem;
     border-radius: 50%;
     background-color: var(--prof-img-bg);
+    text-align: center;
+    align-items: center;
 }
 
 .dropdown{
     display: none;
 }
 
+.gtstd{
+    width: 8.2rem;
+}
+
+.hdhm{
+    color: var(--font-color);
+}
+
+.ink{
+    text-decoration: none;
+}
+
+.lnk{
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.pfpb{
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    margin-top: .15rem;
+}
+
 @media screen and (max-width : 480px){
+    .logo{
+        text-decoration: none;
+    }
+
+    .drlinks{
+        list-style: none;
+        color: var(--font-color);
+
+    }
+
+    .toggle-theme-wrapper{
+        display: none;
+    }
+
     .hamburger,
     .drclose{
         display: block;
-        width: 2.4rem;
+        width: 2.1rem;
         height: 2rem;
         cursor: pointer;
+        margin-top: 0.7rem;
+        margin-right: 0.5rem;
+        color: var(--font-color);
+    }
+
+    .drclose{
+        margin-top: .87rem;
+        margin-right: 1rem;
     }
 
     .contr,
@@ -118,13 +167,18 @@
         display: none;
     }
 
-    .bar{
+    .bar,
+    .drbar{
         width: 100%;
         height: .2rem;
         border-radius: 7px;
         display: block;
-        background-color: var(--prof-img-bg);
+        background-color: var(--font-color);
         margin-bottom: .3rem;
+    }
+
+    .drlolink{
+        text-decoration: none;
     }
 
     .header{
@@ -135,17 +189,25 @@
     .dropdown{
         display: block;
         transition: 0.3s;
-        position: absolute;
         width: 80%;
         padding: 2rem;
+        margin-top: 30rem;
+        position: fixed;
         height: 100vh;
         background-color: var(--header-bg);
         left:-100%
     }
 
-    .logo{
-        margin-left: -3rem;
+    .drink{
+        color: var(--font-color);
+        font-size: 1.3rem;
+        font-weight: 700;
     }
+
+    .drlink{
+        margin-bottom: 1.4rem;
+    }
+
 
     .dropdown.show{
         display: block;
@@ -154,15 +216,15 @@
 
     .hdr{
         display: flex;
-        justify-content: space-between;
+        margin-bottom: 1.3rem;
     }
 
     .drbar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
+        transform: translateY(4px) rotate(45deg);
     }
 
     .drbar:nth-child(2) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-4.9px) translateX(-1px) rotate(-45deg);
     }
 
 }

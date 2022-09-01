@@ -6,7 +6,7 @@ import * as backend from './index.main.mjs';
 const AccountContext = createContext();
 
 const AccountContextProvider = ({children}) => {
-    const [network, setNetwork] = useState('');
+    const [network, setNetwork] = useState('ALGO');
     const reach = loadStdlib(network);
     console.log(network);
     unsafeAllowMultipleStdlibs();
@@ -39,6 +39,7 @@ const AccountContextProvider = ({children}) => {
     const [joining, setJoining] = useState();
     const [postrt, setPostrt] = useState('');
     const [addressPs, setAdressPs] = useState('');
+    const [contract, setContract] = useState({});
     let accountC;
     const connect = async(address) => {
         setIsConnecting(true);
@@ -57,6 +58,9 @@ const AccountContextProvider = ({children}) => {
           alert(account);
           setIsConnecting(false)
           setAdressPs(accountC.getAddress());
+          setContract(accountC.contract(backend));
+          console.log(contract);
+          alert(contract);
           window.sessionStorage.setItem('user', accountC.getAddress());
           window.location.href='/';
           result = 'success'; 
@@ -203,7 +207,6 @@ const AccountContextProvider = ({children}) => {
     const deploy = async() =>{
            try{
             alert(accountC);
-            const contract = accountC.contract(backend);
             setDeploying(true);
             backend.Alice(contract, Poster);
             let ctcInfo = JSON.stringify(await contract.getInfo(), null, 2)
@@ -215,7 +218,6 @@ const AccountContextProvider = ({children}) => {
     }
     const Attach = async()=>{
         try{
-            const contract = account.contract(backend);
             setAttaching(true);
             setView('Subscribing');
             backend.Bob(contract, Subscriber);

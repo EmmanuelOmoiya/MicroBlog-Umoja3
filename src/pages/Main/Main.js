@@ -1,8 +1,22 @@
 import './main.css';
 import { useState } from 'react';
 import { useAccountContext } from '../AccountContext';
+import { CSSTransitionGroup } from 'react-transition-group';
+import { useLottie } from "lottie-react";
+import { write, join } from "../../assets";
+
 
 const Main = () =>{
+    const options = {
+      animationData: write,
+      loop: true
+    };
+    const joptions = {
+      animationData: join,
+      loop: true
+    };
+    const { create } = useLottie(options);
+    const { cjoin } = useLottie(joptions);
     const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
     const { view, setView, postrt, createPost, subscribe, setPostrt, userAddress, setStreamName, posts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, pstiinf, setPstiinf, Attach, attaching } =  useAccountContext();
     const copyToClipborad = async(button) => {
@@ -44,20 +58,23 @@ const Main = () =>{
         )
     } else if(view === 'BloWrap'){
         return(
-            <div className="Buttons">
-          <div  onClick={() =>selectCreate()}>
-            <p style={{display:'inline', fontSize:'60%'}}>Create Posts</p>
+          <div className="main">
+            <div className="BsCh">
+          <div  onClick={() =>selectCreate()} className="chcrd">
+            <p className="">{create}</p>
+            <p className="pso">Create Posts</p>
           </div>
-          <div  onClick={() => selectView()} >
-            <p style={{display:'inline', fontSize:'60%'}}>Read Posts</p>
+          <div  onClick={() => selectView()} className="chcrd">
+            <p className="pso">Read Posts</p>
           </div>
-          <div  onClick={() =>selectJoin()}>
-            <p style={{display:'inline', fontSize:'60%'}}>Join Stream</p>
+          <div  onClick={() =>selectJoin()} className="chcrd">
+            <p className="">{cjoin}</p>
+            <p className="pso">Join Stream</p>
           </div>
-          <div  onClick={() =>help()}>
-            <p style={{display:'inline', fontSize:'60%'}}>Help</p>
+          <div  onClick={() =>help()} className="chcrd">
+            <p className="pso">Help</p>
           </div>
-         
+         </div>
         </div>
         )
     } else if(view === 'Deploy'){
@@ -83,8 +100,8 @@ const Main = () =>{
         return(
             <div className="main">
                 <div>
-          <p style={{fontSize:'20px', textAlign:'left', marginLeft:'35%'}}>New Posts:</p>
-          <textarea style={{width:'31vw', marginLeft:'1%'}}
+          <p >New Posts:</p>
+          <textarea 
             placeholder='...'
             onChange={(e) =>setPostrt(e.target.value)}
           />

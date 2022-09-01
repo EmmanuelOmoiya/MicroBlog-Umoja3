@@ -58,4 +58,9 @@
   .slider.round:before {
     border-radius: 50%;
   }
-  
+
+  @media screen and (max-width: 480px){
+  .toggle-theme-wrapper {
+      display: none;
+  }
+}
