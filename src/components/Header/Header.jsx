@@ -6,7 +6,7 @@ import { IoSettings, IoNotifications } from 'react-icons/io5';
 import { TbWritingSign } from 'react-icons/tb';
 import { FaUserAlt } from 'react-icons/fa';
 import Darkmode from '../DarkMode/Darkmode';
-import { useAccountContext } from './../pages/AccountContext';
+import { useAccountContext } from '../../pages/AccountContext';
 import { NFT0, NFT1, NFT2, NFT3, NFT5 } from '../../assets';
 
 const Header = () => {
@@ -50,7 +50,7 @@ const Header = () => {
                                 </li>
                             </div>
                             <div className="leftNav">
-                                <Darkmode className="dmd fg" />
+                                <p clasName="lopi"><Darkmode className="dmd fg" /></p>
                                 <div className="profimg">
                                     <img className="pfpb"src={profileImag[Math.floor(Math.random() * 5)]} alt="profile" />
                                 </div>
@@ -65,7 +65,7 @@ const Header = () => {
                                 </div>
                                 <ul className="drlinks">
                                     <li className="drlink">
-                                        <Link to="/home"  className="ink drink"><p className="iconNav" /> Home</Link>
+                                        <Link to="/home"  className="ink drink"><p className="iconNav"> Home</p></Link>
                                     </li>
                                     <li className="drlink">
                                        <p className="drink" onClick={()=>{
@@ -104,24 +104,15 @@ const Header = () => {
                             </div>
                             <ul className="drlinks">
                                     <li className="drlink">
-                                        <Link to="/home"  className="ink drink"><p className="iconNav" onClick={()=>toggle()}/> Home</Link>
+                                        <Link to="/"  className="ink drink"><p className="iconNav" onClick={()=>toggle()}/> Home</Link>
                                     </li>
-                                    <li className="drlink">
-                                       <p className="drink" onClick={()=>{
+                                    <button className="connectBtn gtstd" onClick={()=>{
                                         toggle()
-                                        selectCreate()
+                                        window.location.href="/connect-account"
                                         }
-                                    }>Create Stream</p>
-                                    </li>
-                                    <li className="drlink">
-                                        <p className="drink" onClick={()=>{
-                                        toggle()
-                                        selectJoin()
-                                        }
-                                    }>Join Stream</p>
-                                    </li>
-                                    <Darkmode />
-                                </ul>
+                                    }>Get Started</button>
+                                    <p><Darkmode /></p>
+                            </ul>
                             </div>
                     </div>
             }

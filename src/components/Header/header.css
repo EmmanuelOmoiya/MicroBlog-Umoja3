@@ -141,7 +141,7 @@
 
     }
 
-    .toggle-theme-wrapper{
+    .lopi{
         display: none;
     }
 
@@ -227,4 +227,9 @@
         transform: translateY(-4.9px) translateX(-1px) rotate(-45deg);
     }
 
+    .gtstd{
+        height: 2.4rem;
+        width: 7.7rem;
+        font-size: .9rem;
+    }
 }

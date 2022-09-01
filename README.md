@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
+ <img src="https://docs.reach.sh/assets/logo.png" alt="Project logo"></a>
 </p>
 <h3 align="center">Reach Umoja3 Bounty Hack</h3>
 
@@ -8,15 +8,15 @@
 
 [![Hackathon](https://img.shields.io/badge/hackathon-name-orange.svg)](http://hackathon.url.com)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/EmmanuelOmoiya/The-Documentation-Compendium.svg)](https://github.com/EmmanuelOmoiya/MicroBlog-Umoja3/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/EmmanuelOmoiya/MicroBlog-Umoja3/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A micro blogging service that lets members to publish posts and subscribe to their favorite topics
     <br> 
 </p>
 
@@ -76,7 +76,7 @@ and testing purposes. See [deployment](#deployment) for notes on how to deploy t
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+You need to have the following software:
 
 ```
 Node Js
@@ -84,7 +84,7 @@ Node Js
 
 ### Installing
 
-Firstly, you download the source code from this repository.
+Firstly, you need to download the source code from this repository.
  
 Install all the node packages using:
 
@@ -115,9 +115,6 @@ Add notes about how to use the system.
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
 
-- Reach [Documentation](https://docs.reach.sh) and [Examples](https://github.com/)
+- Reach [Documentation](https://docs.reach.sh) and [Examples](https://github.com/reach-sh/reach-lang/tree/master/examples)
 - [@FestusEbin](https://github.com/FestusEbin) (mentor)
 - Nick Stanford
-
-## MicroBlog-Umoja3
-A micro blogging service that lets members to publish posts and subscribe to their favorite topics
