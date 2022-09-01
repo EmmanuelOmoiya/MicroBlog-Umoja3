@@ -7,7 +7,7 @@ import { TbWritingSign } from 'react-icons/tb';
 import { FaUserAlt } from 'react-icons/fa';
 import Darkmode from '../DarkMode/Darkmode';
 import { useAccountContext } from '../../pages/AccountContext';
-import { NFT0, NFT1, NFT2, NFT3, NFT5 } from '../../assets';
+import { NFT0, NFT1, NFT2, NFT3, NFT5, NFT6, NFT7, NFT8, NFT9, NFT10, NFT11, NFT12, NFT13, NFT14, NFT15, NFT16, NFT17, NFT18, NFT19, NFT20, NFT21 } from '../../assets';
 
 const Header = () => {
     const isConnected = window.sessionStorage.getItem('user');
@@ -20,10 +20,25 @@ const Header = () => {
         NFT1,
         NFT2,
         NFT3,
-        NFT5
+        NFT5,
+        NFT6,
+        NFT7,
+        NFT8,
+        NFT9,
+        NFT10,
+        NFT11,
+        NFT12,
+        NFT13,
+        NFT14,
+        NFT15,
+        NFT16,
+        NFT17,
+        NFT18,
+        NFT19,
+        NFT20,
+        NFT21
     ]
     const { selectJoin, selectCreate, selectView, help } = useAccountContext();
-    //const imag = Math.Floor(Math.random * 6);
     return (
         <>
             {
@@ -52,7 +67,7 @@ const Header = () => {
                             <div className="leftNav">
                                 <p clasName="lopi"><Darkmode className="dmd fg" /></p>
                                 <div className="profimg">
-                                    <img className="pfpb"src={profileImag[Math.floor(Math.random() * 5)]} alt="profile" />
+                                    <img className="pfpb"src={profileImag[Math.floor(Math.random() * 21)]} alt="profile" />
                                 </div>
                             </div>
                             <div className={show ? "dropdown show" : "dropdown"}>

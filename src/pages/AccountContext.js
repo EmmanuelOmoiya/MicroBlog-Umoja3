@@ -207,6 +207,8 @@ const AccountContextProvider = ({children}) => {
     const deploy = async() =>{
            try{
             alert(accountC);
+            alert(contract);
+            console.log(contract)
             setDeploying(true);
             backend.Alice(contract, Poster);
             let ctcInfo = JSON.stringify(await contract.getInfo(), null, 2)
