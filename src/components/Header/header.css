@@ -121,6 +121,7 @@
     font-weight: 600;
     text-decoration: none;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .pfpb{
@@ -191,7 +192,7 @@
         transition: 0.3s;
         width: 80%;
         padding: 2rem;
-        margin-top: 25rem;
+        margin-top: 29.7rem;
         position: fixed;
         height: 100vh;
         background-color: var(--header-bg);

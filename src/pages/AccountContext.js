@@ -12,7 +12,7 @@ const AccountContextProvider = ({children}) => {
     unsafeAllowMultipleStdlibs();
     reach.setWalletFallback(reach.walletFallback( { providerEnv: 'TestNet', MyAlgoConnect } ));
 
-    const [account, setAccount] = useState({});
+    const [account, setAccount] = useState();
     const [address, setAddress] = useState('');
     const [isConnecting, setIsConnecting] = useState(false);
     const [view, setView] = useState('BloWrap');
@@ -40,9 +40,11 @@ const AccountContextProvider = ({children}) => {
     const [postrt, setPostrt] = useState('');
     const [addressPs, setAdressPs] = useState('');
     const [contract, setContract] = useState({});
-    let accountC;
+    const [decision, setDecision] = useState('');
+
     const connect = async(address) => {
         setIsConnecting(true);
+        let accountC;
         let result = ""
         let mnemonic;
         if(address === ""){
@@ -52,27 +54,27 @@ const AccountContextProvider = ({children}) => {
         }
         try {
           accountC = mnemonic ? await reach.newAccountFromMnemonic(address) : await reach.getDefaultAccount();
-          setAccount(accountC);
-          console.log(accountC);
-          console.log(account);
-          alert(account);
-          setIsConnecting(false)
-          setAdressPs(accountC.getAddress());
-          setContract(accountC.contract(backend));
-          console.log(contract);
-          alert(contract);
+          setIsConnecting(false);
+          //setAdressPs(accountC.getAddress());
+          //setContract(accountC.contract(backend));
           window.sessionStorage.setItem('user', accountC.getAddress());
+          console.log(accountC);
+          setAccount(accountC)
+          alert(accountC);
+          console.log(account);
           window.location.href='/';
           result = 'success'; 
         } catch (error) {
             setIsConnecting(false);
           result = `Failed. \n Error: ${error}`;
           alert(error);
-        }
+        } 
+        //setContract(accountC.contract(backend));
         console.log(result);
-        alert(accountC);
-        console.log(accountC);
-        return accountC;
+        setAccount(accountC)
+        alert(account);
+        //setAccount(accountC);
+        console.log(account);
     }
 
     const userAddress = addressPs.substring(0,6)+'...';
@@ -88,24 +90,14 @@ const AccountContextProvider = ({children}) => {
 
     const Poster = {
         ...common,
-        setStreamName : async(postName) => {
-            setView('Deploy');
-            return postName
-        },
+        streamName : postName,
         createStream : async() => {
             return postName
         },
         post: async()=>{
-            const posts = await new Promise(resolvePostedP => {
-                setView('WritePost', resolvePostedP);
-            });
-            setView('uploading');
             return posts;
         },
         continueStream: async()=>{
-            const decision = await new Promise(resolveContinueP => {
-                setView('ContinuePost',  resolveContinueP);
-            });
             return decision;
         },
     }
@@ -139,25 +131,26 @@ const AccountContextProvider = ({children}) => {
 
     const selectCreate = () =>{
         if(createdFirstPost){
-            console.log(accountC);
-            alert(accountC)
+            console.log(account);
+            alert(account)
             setView('createPost')
         } else {
-            console.log(accountC);
-            alert(accountC);
+            console.log(account);
+            alert(account);
             setView('Blogger')
         }
     }
 
     const Subscriber = {
         ...common,
-        seeStream: (streamName)=>{
+        seeStream: (streanb)=>{
+            setPostName(streanb);
             setView('chooseSubscribing');
-            return true
+            return true;
         },
         seeMessage: (post, postName, address)=>{
             let newPost = {
-                thought: post,
+                though: post,
                 stream: postName,
                 address: address
             }
@@ -194,10 +187,9 @@ const AccountContextProvider = ({children}) => {
         setResolvePostedP(post);
     }
 
-    const Continue = async(decision) => { 
-        if(decision === 'Continue') decision = 0;
-        else if(decision === 'Stop') decision = 1;
-        setResolveContinueP(decision);
+    const Continue = async(desion) => { 
+        if(desion === 'Continue') setDecision(0);
+        else if(desion === 'Stop') setDecision(1);
     }
 
     const help = () =>{
@@ -206,9 +198,8 @@ const AccountContextProvider = ({children}) => {
 
     const deploy = async() =>{
            try{
-            alert(accountC);
-            alert(contract);
-            console.log(contract)
+            alert(account);
+            const contract = account.contract(backend);
             setDeploying(true);
             backend.Alice(contract, Poster);
             let ctcInfo = JSON.stringify(await contract.getInfo(), null, 2)
@@ -222,6 +213,7 @@ const AccountContextProvider = ({children}) => {
         try{
             setAttaching(true);
             setView('Subscribing');
+            const contract = account.contract(backend);
             backend.Bob(contract, Subscriber);
 
         } catch(error){

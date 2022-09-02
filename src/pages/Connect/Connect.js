@@ -1,6 +1,7 @@
 import './connect.css';
 import { FaEthereum } from 'react-icons/fa';
 import { useAccountContext } from '../AccountContext';
+import { Link } from 'react-router-dom';
 
 // import { FaAlgo } from '../../assets';
 

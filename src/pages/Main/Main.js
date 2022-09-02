@@ -46,7 +46,8 @@ const Main = () =>{
         return(
             <div className="main">
                 <h2 className="nmstr">What is the name of your Stream?</h2>
-                <input className="inolr" type="text" placeholder="Input name of post" value={postName} onChange={(e)=> setPostName(e.target.value)}/>
+                <input className="inolr" type="text" placeholder="Input name of stream" value={postName} onChange={(e)=> setPostName(e.target.value)}/>
+                <br />
                 <button className="connectBtn cntu" onClick={()=> setStreamName(postName)}>Create </button>
             </div>
         )
@@ -58,7 +59,7 @@ const Main = () =>{
         )
     } else if(view === 'BloWrap'){
         return(
-          <div className="main">
+          <div className="main ghy">
             <div className="BsCh">
           <div  onClick={() =>selectCreate()} className="chcrd">
             <p className="">{create}</p>
@@ -92,8 +93,8 @@ const Main = () =>{
         return(
         <div className="main">
             <h2 className="cntrdep nmstr">Subscribers can join by entering the following contract information</h2>
-            <pre className="ccntrinfo">{JSON.stringify(contractInfo)}</pre>
-            <button className="connect" onClick={(e)=>copyToClipborad(e.currentTarget)}>Copy to clipboard</button>
+            <pre className="ccntrinfo">{contractInfo}</pre>
+            <button className="connectBtn copyf" onClick={(e)=>copyToClipborad(e.currentTarget)}>Copy to clipboard</button>
         </div>
         )
     } else if(view === 'createPost'){
@@ -176,17 +177,13 @@ const Main = () =>{
         <div className="main">
             <h2 className="pstinf nmstr">Please paste the contract info to join a stream:</h2>
             <textarea className="pinfctr" value={pstiinf} onChange={(e)=>setPstiinf(e.target.value)} />
-            {attaching ?
-            <button className="attachr connectBtn">Chill a moment </button>
-            :
-            <button className="attchctr connectBtn" onClick={()=>Attach()} disabled={!pstiinf}>Continue </button>
-            }
+            <button className="attchctr connectBtn" onClick={()=>Attach()} disabled={!pstiinf}>Join </button>
         </div>
         )
     } else if(view === 'Subscribing'){
         return(
             <div className="main">
-                <p className="subscribing">Subscribing to {postName}...</p>
+                <p className="subscribing">Chill a moment...</p>
             </div>
         )
     } else if(view === "chooseSubscribing"){

@@ -133,7 +133,8 @@ exports.Deploy = class extends React.Component {
 exports.Deploying = class extends React.Component {
   render() {
     return (
-      <div>Creating your stream... please wait.<br/><img style={{marginTop: '5%', color:'black'}} alt="Loading" src={loader}/></div>
+      <div>Creating your stream... please wait.<br/>
+      <img style={{marginTop: '5%', color:'black'}} alt="Loading" src={loader}/></div>
       
     );
   }

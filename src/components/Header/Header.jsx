@@ -15,6 +15,7 @@ const Header = () => {
     const toggle = () => {
         setShow(!show);
     }
+    const imdg = Math.floor(Math.random() * 21);
     const profileImag = [
         NFT0,
         NFT1,
@@ -52,7 +53,7 @@ const Header = () => {
                             <Link to="/" className="lolink"><h2 className="logo">NullFun()</h2></Link>
                             <div className="contr">
                                 <li className="cids">
-                                    <Link to="/" onClick={()=>toggle()} className="ink"><p className="hdhm lnk">Home</p></Link>
+                                    <Link to="/" className="ink"><p className="hdhm lnk">Home</p></Link>
                                 </li>
                                 <li className="cids">
                                     <p className="hdhm lnk" onClick={()=>selectCreate()}>Create</p>
@@ -65,9 +66,9 @@ const Header = () => {
                                 </li>
                             </div>
                             <div className="leftNav">
-                                <p clasName="lopi"><Darkmode className="dmd fg" /></p>
+                                <p className="lopi"><Darkmode className="dmd fg" /></p>
                                 <div className="profimg">
-                                    <img className="pfpb"src={profileImag[Math.floor(Math.random() * 21)]} alt="profile" />
+                                    <img className="pfpb"src={profileImag[imdg]} alt="profile" />
                                 </div>
                             </div>
                             <div className={show ? "dropdown show" : "dropdown"}>
@@ -90,7 +91,7 @@ const Header = () => {
                                     }>Create Stream</p>
                                     </li>
                                     <li className="drlink">
-                                        <p className="drink" ononClick={()=>{
+                                        <p className="drink" onClick={()=>{
                                         toggle()
                                         selectJoin()
                                         }
@@ -126,6 +127,7 @@ const Header = () => {
                                         window.location.href="/connect-account"
                                         }
                                     }>Get Started</button>
+                                    <br/>
                                     <p><Darkmode /></p>
                             </ul>
                             </div>

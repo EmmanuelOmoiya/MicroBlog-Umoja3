@@ -2,7 +2,7 @@
     background-color: var(--connect-bg);
     color: var(--font-color);
     padding-top: 2rem;
-    height: calc(100vh -4.2rem);
+    height: calc(100vh - 4.2rem);
 }
 
 .con-title{
@@ -74,7 +74,7 @@
 @media screen and (max-width: 480px){
     .connect{
         padding-top: 3rem;
-        height: calc(100vh - 6.6rem);
+        height: 100vh;
     }
 
     .connect-section{

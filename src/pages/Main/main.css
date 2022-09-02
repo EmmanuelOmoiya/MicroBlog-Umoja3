@@ -1,6 +1,9 @@
 .main{
     background-color: var(--home-bg);
     color: var(--font-color);
+    height: 100vh;
+    text-align: center;
+    padding-top: 6.9rem;
 }
 
 .BsCh{
@@ -10,9 +13,9 @@
     height: auto;
     padding: 1rem;
     margin-left: auto;
-    margin-top: 2rem;
+    padding-top: 2rem;
+    margin-top: -2rem;
     height: 100%;
-
     margin-right: auto;
 }
 
@@ -37,6 +40,60 @@
     font-weight: bolder;
 }
 
+.nmstr{
+    margin-bottom: 1rem;
+}
+
+.cntu,
+.attchctr{
+    width: 40%;
+}
+
+.pinfctr{
+    width: 100%;
+    resize: none;
+    height: 12rem;
+    margin-bottom: 1.3rem;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--header-bg);
+    padding: 1.2rem;
+    color: var(--font-color);
+    font-family: 'Manrope', sans-serif;
+}
+
+.inolr{
+    height: 2.6rem;
+    padding: .5rem;
+    padding-left: 1rem;
+    border: none;    
+    background-color: var(--search-bg);
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    color: var(--font-color);
+    font-family: 'Manrope', sans-serif;
+    border-radius: 7px;
+
+}
+
+.inolr::placeholder{
+font-family: inherit;
+font-size: .8rem;
+font-weight: 600;
+}
+
+.copyf{
+        margin-top: 1.4rem;
+        width: 40%;
+}
+
+.pinfctr{
+    width: 65%;
+}
+
+.subscribing{
+    font-size: 2rem;
+}
 
 @media screen and (max-width: 480px) {
     .BsCh{
@@ -52,7 +109,12 @@
 
     .main{
         padding: 2rem;
-        height: calc(100vh - 5.4rem);
+        height: 100vh;
+        text-align: left;
+    }
+
+    .main.ghy{
+        height:100%;
     }
 
     .nmstr{
@@ -78,5 +140,24 @@
         font-family: inherit;
         font-size: .8rem;
         font-weight: 600;
+    }
+
+    .pinfctr{
+        width: 100%;
+        resize: none;
+        height: 12rem;
+        margin-bottom: 1.3rem;
+        border-radius: 7px;
+        border: none;
+        background-color: var(--header-bg);
+        padding: 1.2rem;
+        color: var(--font-color);
+        font-family: 'Manrope', sans-serif;
+    }
+
+    .cntu,
+    .attchctr,
+    .copyf{
+        width: 100%;
     }
 }
