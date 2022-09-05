@@ -19,7 +19,7 @@ const Main = () =>{
     const { create } = useLottie(options);
     const { cjoin } = useLottie(joptions);
     const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
-    const { view, setView, postrt, createPost, subscribe, setPostrt, userAddress, setStreamName, posts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, setContractInfo, Attach, attaching } =  useAccountContext();
+    const { view, makePost, setView, subscriberPosts, postrt, createPost, joinNewStream, joinStream, viewPosts, seePosts, sawFirstPost, alreadyViewed, setAlreadyViewed, setSawFirstPost, subscribe, setPostrt, userAddress, setStreamName, posts, setPosts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, setContractInfo, Attach, attaching } =  useAccountContext();
     const copyToClipborad = async(button) => {
         navigator.clipboard.writeText(contractInfo);
         const origInnerHTML = button.innerHTML;
@@ -37,6 +37,15 @@ const Main = () =>{
     if(!isConnected){
       setView('Connect')
     } 
+    if(sawFirstPost && !joinStream) {
+      setView('PostSection');
+      setAlreadyViewed(true);
+      setPosts(subscriberPosts);
+    }
+
+    if(sawFirstPost && joinStream) joinNewStream();
+    if(!joinStream && sawFirstPost && !seePosts) viewPosts();
+
     if(view === 'ChooseRole'){
     return(
         <div className="main">
@@ -108,15 +117,17 @@ const Main = () =>{
         return(
             <div className="main">
                 <div>
-          <p >New Posts:</p>
+          <p className="nope">New Posts:</p>
           <textarea 
-            placeholder='...'
+            placeholder='Write Post content'
             onChange={(e) =>setPostrt(e.target.value)}
+            className="pinfctr txtad"
           />
         
         </div>
         <button
-          onClick={() => post()}
+          onClick={() => makePost()}
+          className="connectBtn psft"
         >Post</button>
 
         {posts.map(post => {
@@ -133,50 +144,10 @@ const Main = () =>{
         
         </div>
         )
-    } else if(view === "help"){
-        return (
-            <div className='Card'>
-              <div id='help-page-card-header' style={{textAlign:'center', fontSize:'24px', marginTop:'3%', marginBottom:'3%',marginLeft:'1%'}}>
-              <h2>Help Page</h2>
-                Null is a microblog in which members can post and subscribe to various streams of content.
-              </div>
-              <div id='custom-terminology' style={{textAlign:'left', fontSize:'20px', marginTop:'3%', marginBottom:'3%',marginLeft:'1%'}}>
-                <h4>Custom Terminology</h4>
-                <ul>
-                  <li><strong>Post:</strong> a content of any length can be shared by a user.</li><br/>
-                  <li><strong>Stream:</strong> a collection of thoughts that a user can post to and other users can subscribe to read posts.</li> <br/>
-                  <li><strong>Contract Info:</strong> the Smart Contract (SC) information generated after creating a new stream and is required by a user to subscribe to a stream</li>
-                </ul>
-              </div>
-              <div id='using-the-app' style={{textAlign:'left', fontSize:'20px', marginTop:'3%', marginBottom:'3%',marginLeft:'1%'}}>
-                <h4>Using the DApp</h4>
-                <strong>Software Requirements:</strong> Google Chrome browser <br/><br/>
-                <strong>Creating a new stream:</strong>
-                <ul>
-                <li>To create a stream, click on Create Posts on the top.</li> <br/>
-                <li>After providing a name to the stream and clicking on deploy, the contract information will be displayed on the screen.</li> <br/>
-                <li>Share this info with your friends so that they can subscribe to your stream and start following your thoughts</li> <br/>
-                <li><strong>Note:</strong> Atleast one user must subscribe to your stream before you can start sharing your thoughts.</li> <br/>
-                </ul>
-                <strong>Joining a stream:</strong>
-                <ul>
-                  <li>To join a stream, click on the Join Stream on the top. </li> <br/>
-                  <li>You should have received the Contract Info of a stream created by your friend. If not, please ask your friend to share it</li><br/>
-                  <li>Enter the contract information shared that your friend (the creator of the stream) shared to subscribe.</li> <br/>
-                </ul>
-                <strong>Read Posts:</strong>
-                <ul>
-                  <li>In the Read Posts section, you can view all the posts from the streams you've subscribed to earlier.</li> <br/>
-                  <li>You'll be able to view posts made by the creator after subscribing to the stream.</li> <br/>
-                  <li>You can join unlimited streams.</li><br/>
-                </ul>
-                </div>
-              </div>
-          )   
     } else if(view === 'uploading'){
      return(
         <div className="main">
-            <h2 className="uploading">Uploading your post.... please wait.</h2>
+            <h2 className="uploading">Uploading your post.... <br/> Please wait.</h2>
         </div>
      )   
     } else if(view === 'Subscriber'){
@@ -226,7 +197,7 @@ const Main = () =>{
        
                 <span style={{fontSize: '20px', display:'inline'}}><img style={{width: '10%', height:'20%', display:'inline', verticalAlign:'top'}} alt="User" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png"/><strong>{post.address.substring(0,6)+'....'}</strong></span><p style={{color:'grey', fontSize:'20px', marginLeft:'1%', display:'inline'}}>@{post.stream} | {today}</p>
                 
-                  <p style={{fontSize: '20px', marginLeft: '10%'}}>{post.thought}</p>
+                  <p style={{fontSize: '20px', marginLeft: '10%'}}>{post.post}</p>
                 </div>
               )
             })}

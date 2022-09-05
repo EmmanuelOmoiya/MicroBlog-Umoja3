@@ -116,6 +116,20 @@ font-weight: 600;
     font-size: 1.05rem
 }
 
+.nope{
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.txtad{
+    height: 60vh;
+}
+
+.psft{
+    width: 60%;
+}
+
 @media screen and (max-width: 480px) {
     .BsCh{
         max-width: 100%;
@@ -186,5 +200,18 @@ font-weight: 600;
     .subcribechoid{
         width: 90%;
         
+    }
+
+    .psft{
+        width: 27%;
+    }
+
+    .nope{
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .txtad{
+        height: 70vh;
     }
 }

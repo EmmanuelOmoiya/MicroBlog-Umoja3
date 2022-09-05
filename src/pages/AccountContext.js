@@ -41,9 +41,9 @@ const AccountContextProvider = ({children}) => {
     const [contract, setContract] = useState({});
     const [decision, setDecision] = useState('');
     const [account, setAccount] = useState({});
-
+    const [subscribin, setSubscribin] = useState();
     let cool;
-
+    const [isDone, setIsDone ]= useState(false);
     const connect = async(address) => {
         setIsConnecting(true);
         let result = ""
@@ -120,12 +120,6 @@ const AccountContextProvider = ({children}) => {
         endStream : async() => setView('End')
     }
 
-    const seeStream = (streanb) =>{
-        setPostName(streanb);
-        setView('chooseSubscribing');
-        return true;
-    }
-
     const seeMessage = async (message, streamName, creator) =>{
         let newPost = {
             post: message,
@@ -140,14 +134,12 @@ const AccountContextProvider = ({children}) => {
         setPosts(newPost);
     }
 
-    const subscribe = async (yesOrNo)=>{
-        return await new Promise(resolveAcceptedP => {
+    const subscribe = (yesOrNo)=>{
             if(yesOrNo === 'yes'){
-                setView('AwaitingPost')
+                setSubcribin(true);
             } else {
                 setView('Subscriber');
             }
-        })
     }
 
     
@@ -155,21 +147,17 @@ const AccountContextProvider = ({children}) => {
     const Continue = async(desion) => { 
         if(desion === 'Continue') setDecision(0);
         else if(desion === 'Stop') setDecision(1);
+        setResolveContinueP(desion);
     }
 
     const help = () =>{
         setView('help');
     }
 
-    const post = async()=>{
-        const post = await new Promise(resolvePostedP => {
-            setView('createPost');
-            return postrt;
-        })
-        setView('uploading');
-        setCreatedFirstPost(true);
-        setPosts(postrt);
-        return post;
+    const makePost = (postrt) =>{
+        setResolvePostedP(postrt);
+        setIsDone(true);
+        alert('beep boop')
     }
 
     const setStreamName = async() => {
@@ -182,7 +170,15 @@ const AccountContextProvider = ({children}) => {
         createStream : async() => {
             return postName
         },
-        ...post,
+        post : async()=>{
+            while(isDone === false){
+                setView('createPost');
+            }
+            setView('uploading');
+            setCreatedFirstPost(true);
+            setPosts(postrt);
+            return postrt;
+        },
         continueStream: async()=>{
             return decision;
         },
@@ -193,7 +189,10 @@ const AccountContextProvider = ({children}) => {
         seeStream: async(streanb) =>{
             setPostName(streanb);
             setView('chooseSubscribing');
-            return true;
+            if(subscribe === true){
+                setView('AwaitingPost')
+                return true;
+            }
         },
         ...seeMessage,
         ...subscribe
@@ -262,6 +261,9 @@ const AccountContextProvider = ({children}) => {
     const title = 'jello'
     return <AccountContext.Provider value={{
         connect,
+        viewPosts,
+        seePost,
+        joinStream,
         network,
         setNetwork,
         address,
@@ -288,18 +290,24 @@ const AccountContextProvider = ({children}) => {
         Attach, 
         attaching,
         posts,
+        setPosts,
         selectCreate,
         selectView,
         selectJoin,
         help,
         addressPs,
         userAddress,
+        makePost,
         postrt,
         setPostrt,
         subscribe,
         joinNewStream,
-        post,
         setStreamName,
+        sawFirstPost,
+        setSawFirstPost,
+        alreadyViewed,
+        setAlreadyViewed,
+        subscriberPosts,
         viewPosts,
     }}>{children}</AccountContext.Provider>
 }
