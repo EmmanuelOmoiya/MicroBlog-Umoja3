@@ -12,7 +12,6 @@ const AccountContextProvider = ({children}) => {
     unsafeAllowMultipleStdlibs();
     reach.setWalletFallback(reach.walletFallback( { providerEnv: 'TestNet', MyAlgoConnect } ));
 
-    const [account, setAccount] = useState();
     const [address, setAddress] = useState('');
     const [isConnecting, setIsConnecting] = useState(false);
     const [view, setView] = useState('BloWrap');
@@ -41,10 +40,12 @@ const AccountContextProvider = ({children}) => {
     const [addressPs, setAdressPs] = useState('');
     const [contract, setContract] = useState({});
     const [decision, setDecision] = useState('');
+    const [account, setAccount] = useState({});
+
+    let cool;
 
     const connect = async(address) => {
         setIsConnecting(true);
-        let accountC;
         let result = ""
         let mnemonic;
         if(address === ""){
@@ -53,16 +54,15 @@ const AccountContextProvider = ({children}) => {
             mnemonic = true
         }
         try {
-          accountC = mnemonic ? await reach.newAccountFromMnemonic(address) : await reach.getDefaultAccount();
+        cool = mnemonic ? await reach.newAccountFromMnemonic(address) : await reach.getDefaultAccount();
+          setAccount(cool);
           setIsConnecting(false);
           //setAdressPs(accountC.getAddress());
           //setContract(accountC.contract(backend));
-          window.sessionStorage.setItem('user', accountC.getAddress());
-          console.log(accountC);
-          setAccount(accountC)
-          alert(accountC);
-          console.log(account);
-          window.location.href='/';
+          window.sessionStorage.setItem('user', cool.getAddress());
+          console.log(account)
+          alert(account);
+          setView('BloWrap');
           result = 'success'; 
         } catch (error) {
             setIsConnecting(false);
@@ -71,39 +71,13 @@ const AccountContextProvider = ({children}) => {
         } 
         //setContract(accountC.contract(backend));
         console.log(result);
-        setAccount(accountC)
-        alert(account);
-        //setAccount(accountC);
-        console.log(account);
+        console.log(cool);
     }
+
+    console.log(cool);
+    console.log(account);
 
     const userAddress = addressPs.substring(0,6)+'...';
-
-    const common = {
-        endStream : async() => setView('End')
-    }
-
-    const setStreamName = async() => {
-        setView('Deploy');
-    }
-   
-
-    const Poster = {
-        ...common,
-        streamName : postName,
-        createStream : async() => {
-            return postName
-        },
-        post: async()=>{
-            return posts;
-        },
-        continueStream: async()=>{
-            return decision;
-        },
-    }
-
-
-
 
     const selectJoin = () => {
         setHome(false);
@@ -141,51 +115,42 @@ const AccountContextProvider = ({children}) => {
         }
     }
 
-    const Subscriber = {
-        ...common,
-        seeStream: (streanb)=>{
-            setPostName(streanb);
-            setView('chooseSubscribing');
-            return true;
-        },
-        seeMessage: (post, postName, address)=>{
-            let newPost = {
-                though: post,
-                stream: postName,
-                address: address
-            }
-            setSubscriberPosts(newPost);
-            setSeePost(true);
-            setSawFirstPost(true);
-            setView('PostSection');
-            setAlreadyViewed(false);
-            setPosts(newPost);
-        },
-        subscribe: (yesOrNo)=>{
+
+    const common = {
+        endStream : async() => setView('End')
+    }
+
+    const seeStream = (streanb) =>{
+        setPostName(streanb);
+        setView('chooseSubscribing');
+        return true;
+    }
+
+    const seeMessage = async (message, streamName, creator) =>{
+        let newPost = {
+            post: message,
+            postName: streamName,
+            author: creator
+        }
+        setSubscriberPosts(newPost);
+        setSeePost(true);
+        setSawFirstPost(true);
+        setView('PostSection');
+        setAlreadyViewed(false);
+        setPosts(newPost);
+    }
+
+    const subscribe = async (yesOrNo)=>{
+        return await new Promise(resolveAcceptedP => {
             if(yesOrNo === 'yes'){
-                setResolveAcceptedP(true);
-                setJoining(true);
+                setView('AwaitingPost')
             } else {
                 setView('Subscriber');
             }
-        }
+        })
     }
 
-    const subscribe = (yesOrNo)=>{
-        if(yesOrNo === 'yes'){
-            setResolveAcceptedP(true);
-            setJoining(true);
-        } else {
-            setView('Subscriber');
-        }
-    }
-
-    const seeStream = (streamName)=>{
-        setView('chooseSubscribing');
-    }
-    const createPost = (post) =>{
-        setResolvePostedP(post);
-    }
+    
 
     const Continue = async(desion) => { 
         if(desion === 'Continue') setDecision(0);
@@ -196,28 +161,83 @@ const AccountContextProvider = ({children}) => {
         setView('help');
     }
 
+    const post = async()=>{
+        const post = await new Promise(resolvePostedP => {
+            setView('createPost');
+            return postrt;
+        })
+        setView('uploading');
+        setCreatedFirstPost(true);
+        setPosts(postrt);
+        return post;
+    }
+
+    const setStreamName = async() => {
+        setView('Deploy');
+    }
+
+    const Poster = {
+        ...common,
+        streamName : postName,
+        createStream : async() => {
+            return postName
+        },
+        ...post,
+        continueStream: async()=>{
+            return decision;
+        },
+    }
+
+    const Subscriber = {
+        ...common,
+        seeStream: async(streanb) =>{
+            setPostName(streanb);
+            setView('chooseSubscribing');
+            return true;
+        },
+        ...seeMessage,
+        ...subscribe
+    }
+
+    //let gh = JSON.parse(window.sessionStorage.getItem('account'))
+/*{
+    "type": "BigNumber",
+    "hex": "0x0670f287"
+  }*/
     const deploy = async() =>{
            try{
             alert(account);
             const contract = account.contract(backend);
+            alert(contract);
             setDeploying(true);
+            console.log(contract)
             backend.Alice(contract, Poster);
+            alert('deploying');
+            console.log('deploying');
             let ctcInfo = JSON.stringify(await contract.getInfo(), null, 2)
+            alert(ctcInfo)
             setContractInfo(ctcInfo);
+            alert(contractInfo);
+            console.log(contractInfo);
             setView('WaitingForAttacher');
         } catch(error){
             alert(error);
+            setDeploying(false);
         }
     }
     const Attach = async()=>{
         try{
             setAttaching(true);
+            console.log(contractInfo);
+            const contract = account.contract(backend, JSON.parse(contractInfo));
             setView('Subscribing');
-            const contract = account.contract(backend);
             backend.Bob(contract, Subscriber);
-
+            console.log(backend.Bob(contract, Subscriber));
+            console.log('Made Contact');
+            alert(postName);
         } catch(error){
             alert(error);
+            console.log(error);
         }
     }
     
@@ -259,7 +279,8 @@ const AccountContextProvider = ({children}) => {
         setPstCnt, 
         deploy, 
         deploying, 
-        contractInfo, 
+        contractInfo,
+        setContractInfo,
         postName, 
         setPostName, 
         pstiinf, 
@@ -271,14 +292,14 @@ const AccountContextProvider = ({children}) => {
         selectView,
         selectJoin,
         help,
-        setStreamName,
         addressPs,
         userAddress,
-        createPost,
         postrt,
         setPostrt,
         subscribe,
         joinNewStream,
+        post,
+        setStreamName,
         viewPosts,
     }}>{children}</AccountContext.Provider>
 }

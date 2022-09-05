@@ -1,7 +1,10 @@
 import { Navigate } from "react-router";
+import { useAccountContext } from './pages/AccountContext';
 const Protected = ({isConnected, children}) => {
+const {setView} = useAccountContext();
+
     if(!isConnected){
-        return <Navigate to="/connect-account" replace />;
+       return setView('Connect');
     }
     return children
 }

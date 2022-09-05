@@ -1,6 +1,7 @@
 import './main.css';
 import { useState } from 'react';
 import { useAccountContext } from '../AccountContext';
+import Connect from '../Connect/Connect';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { useLottie } from "lottie-react";
 import { write, join } from "../../assets";
@@ -18,7 +19,7 @@ const Main = () =>{
     const { create } = useLottie(options);
     const { cjoin } = useLottie(joptions);
     const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
-    const { view, setView, postrt, createPost, subscribe, setPostrt, userAddress, setStreamName, posts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, pstiinf, setPstiinf, Attach, attaching } =  useAccountContext();
+    const { view, setView, postrt, createPost, subscribe, setPostrt, userAddress, setStreamName, posts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, setContractInfo, Attach, attaching } =  useAccountContext();
     const copyToClipborad = async(button) => {
         navigator.clipboard.writeText(contractInfo);
         const origInnerHTML = button.innerHTML;
@@ -32,6 +33,10 @@ const Main = () =>{
     var month = parseInt(today.getMonth() + 1);
     var months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     today=months[month]+' '+today.getDate();
+  const isConnected = window.sessionStorage.getItem('user');
+    if(!isConnected){
+      setView('Connect')
+    } 
     if(view === 'ChooseRole'){
     return(
         <div className="main">
@@ -42,6 +47,8 @@ const Main = () =>{
             </div>
         </div>
     )
+    } else if(view === 'Connect'){
+      return <Connect />
     } else if(view === 'Blogger'){
         return(
             <div className="main">
@@ -109,7 +116,7 @@ const Main = () =>{
         
         </div>
         <button
-          onClick={() => createPost(postrt)}
+          onClick={() => post()}
         >Post</button>
 
         {posts.map(post => {
@@ -176,8 +183,8 @@ const Main = () =>{
         return (
         <div className="main">
             <h2 className="pstinf nmstr">Please paste the contract info to join a stream:</h2>
-            <textarea className="pinfctr" value={pstiinf} onChange={(e)=>setPstiinf(e.target.value)} />
-            <button className="attchctr connectBtn" onClick={()=>Attach()} disabled={!pstiinf}>Join </button>
+            <textarea className="pinfctr" value={contractInfo} onChange={(e)=>setContractInfo(e.target.value)} />
+            <button className="attchctr connectBtn" onClick={()=>Attach()} disabled={!contractInfo}>Join </button>
         </div>
         )
     } else if(view === 'Subscribing'){
@@ -191,15 +198,19 @@ const Main = () =>{
             <div className="main">
                 <p className="choosesubscr nmstr">Subscribe to {postName}</p>
                 <div className="subcribechoid">
-                    <button className="connectBtn" onClick={()=>subscribe('yes')}>Confirm</button>
+                    <button className="connectBtn yesd" onClick={()=>subscribe('yes')}>Confirm</button>
                     <button className="connectBtn no" onClick={()=>subscribe('No')}>Leave</button>
                 </div>
             </div>
         )
+    } else if (view === 'AwaitingPost'){
+      <div className="main">
+                <p className="choosesubscr nmstr subscribing">Awaiting Post from Author....</p>
+            </div>
     } else if(view === 'SubscriberAttached'){
         return(
         <div className="main">
-            <h2 className="subshotit nmstr">The title of the post is {title}</h2>
+            <h2 className="subshotit nmstr">The title of the post is {postName}</h2>
             <p className="authorsub">The author is : {creator} </p>
             <button className="connectBtn" onClick={()=>setView('PostSection')}>View Post </button>
         </div>

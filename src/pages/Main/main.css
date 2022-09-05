@@ -42,6 +42,7 @@
 
 .nmstr{
     margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
 .cntu,
@@ -95,6 +96,26 @@ font-weight: 600;
     font-size: 2rem;
 }
 
+.subcribechoid{
+    width: 35%;
+    margin-left: auto;
+    display: flex;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+.connectBtn.yesd{
+    width: 45%;
+}
+
+.connectBtn.no{
+    width: 45%;
+    background-color: var(--header-bg);
+    color: var(--font-color);
+    font-weight: bolder;
+    font-size: 1.05rem
+}
+
 @media screen and (max-width: 480px) {
     .BsCh{
         max-width: 100%;
@@ -119,6 +140,7 @@ font-weight: 600;
 
     .nmstr{
         margin-bottom: 1rem;
+        font-size: 1.4rem;
     }
 
     .inolr{
@@ -159,5 +181,10 @@ font-weight: 600;
     .attchctr,
     .copyf{
         width: 100%;
+    }
+
+    .subcribechoid{
+        width: 90%;
+        
     }
 }
