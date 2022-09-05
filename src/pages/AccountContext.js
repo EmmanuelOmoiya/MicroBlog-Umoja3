@@ -136,7 +136,7 @@ const AccountContextProvider = ({children}) => {
 
     const subscribe = (yesOrNo)=>{
             if(yesOrNo === 'yes'){
-                setSubcribin(true);
+                setSubscribin(true);
             } else {
                 setView('Subscriber');
             }
