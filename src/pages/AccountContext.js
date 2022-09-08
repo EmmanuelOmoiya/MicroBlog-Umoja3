@@ -160,7 +160,7 @@ const AccountContextProvider = ({children}) => {
                 setView('createPost');
                setTimeout(()=>{
                 resolvue(postrt)
-               }, 10000)
+               }, 30000)
             })
             setView('uploading');
             setCreatedFirstPost(true);

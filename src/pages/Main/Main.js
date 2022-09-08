@@ -138,7 +138,8 @@ const Main = () =>{
            
             <div key={post} className='Tweet'>
     
-            <span style={{fontSize: '20px', display:'inline'}}><img style={{width: '10%', height:'20%', display:'inline', verticalAlign:'top'}} alt="User" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png"/><strong>{userAddress}</strong></span><p style={{color:'grey', fontSize:'20px', marginLeft:'1%', display:'inline'}}>@{postName} | {today}</p>
+            <span style={{fontSize: '20px', display:'inline'}}><img style={{width: '10%', height:'20%', display:'inline', verticalAlign:'top'}} alt="User" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png"/><strong>{userAddress}</strong></span>
+            <p style={{color:'grey', fontSize:'20px', marginLeft:'1%', display:'inline'}}>@{postName} | {today}</p>
             
               <p style={{fontSize: '20px', marginLeft: '10%'}}>{post}</p>
             </div>
@@ -202,9 +203,9 @@ const Main = () =>{
             {posts.map(post => {
               return (
                
-                <div key={post.thought} className='SubscriberTweet'>
+                <div key={post.post} className='SubscriberTweet'>
        
-                <span style={{fontSize: '20px', display:'inline'}}><img style={{width: '10%', height:'20%', display:'inline', verticalAlign:'top'}} alt="User" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png"/><strong>{post.address.substring(0,6)+'....'}</strong></span><p style={{color:'grey', fontSize:'20px', marginLeft:'1%', display:'inline'}}>@{post.stream} | {today}</p>
+                <span style={{fontSize: '20px', display:'inline'}}><img style={{width: '10%', height:'20%', display:'inline', verticalAlign:'top'}} alt="User" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png"/><strong>{post.address.substring(0,6)+'....'}</strong></span><p style={{color:'grey', fontSize:'20px', marginLeft:'1%', display:'inline'}}>@{post.postName} | {today}</p>
                 
                   <p style={{fontSize: '20px', marginLeft: '10%'}}>{post.post}</p>
                 </div>
