@@ -43,11 +43,17 @@
 .nmstr{
     margin-bottom: 1rem;
     font-size: 1.8rem;
+    max-width: 77%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.cntu,
+.cntu{
+    width: 30%;
+}
+
 .attchctr{
-    width: 40%;
+    width: 37%;
 }
 
 .pinfctr{
@@ -70,11 +76,10 @@
     border: none;    
     background-color: var(--search-bg);
     margin-bottom: 2rem;
-    margin-right: 1rem;
     color: var(--font-color);
     font-family: 'Manrope', sans-serif;
     border-radius: 7px;
-
+    width: 30%;
 }
 
 .inolr::placeholder{
@@ -85,7 +90,7 @@ font-weight: 600;
 
 .copyf{
         margin-top: 1.4rem;
-        width: 40%;
+        width: 20%;
 }
 
 .pinfctr{
@@ -128,6 +133,39 @@ font-weight: 600;
 
 .psft{
     width: 60%;
+}
+
+.ccntrinfo{
+    height: auto;
+    background-color: var(--header-bg);
+    border-radius: 7px;
+    padding: 1rem;
+    font-family: 'Manrope' sans-serif;
+    width: 50%;
+    margin: auto
+}
+
+.pstinf,
+.cntrdep{
+    margin-bottom: 1rem;
+}
+
+
+.choosesubscr {
+    font-size: 2.7rem;
+    margin-bottom: 1rem;
+}
+
+.conchis{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.cuyt,
+.stpoyt{
+    width: 45%;
 }
 
 @media screen and (max-width: 480px) {
@@ -209,6 +247,7 @@ font-weight: 600;
     .nope{
         font-size: 1rem;
         margin-bottom: 0.5rem;
+        margin-left: 10rem;
     }
 
     .txtad{

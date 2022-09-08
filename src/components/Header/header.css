@@ -7,6 +7,7 @@
     font-family: Grand-Hotel;
     color: var(--font-color);
     letter-spacing: .05em;
+    cursor: pointer;
 }
 
 .lolink{
@@ -131,6 +132,10 @@
     margin-top: .15rem;
 }
 
+button.connectBtn.gtstd {
+    width: 8.2rem;
+}
+
 @media screen and (max-width : 480px){
     .logo{
         text-decoration: none;
@@ -232,5 +237,6 @@
         height: 2.4rem;
         width: 7.7rem;
         font-size: .9rem;
+        margin-bottom: 1rem;
     }
 }

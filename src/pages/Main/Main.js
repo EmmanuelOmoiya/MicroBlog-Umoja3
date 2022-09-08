@@ -2,6 +2,7 @@ import './main.css';
 import { useState } from 'react';
 import { useAccountContext } from '../AccountContext';
 import Connect from '../Connect/Connect';
+import Land from '../Land/Land';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { useLottie } from "lottie-react";
 import { write, join } from "../../assets";
@@ -19,7 +20,7 @@ const Main = () =>{
     const { create } = useLottie(options);
     const { cjoin } = useLottie(joptions);
     const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
-    const { view, makePost, setView, subscriberPosts, postrt, createPost, joinNewStream, joinStream, viewPosts, seePosts, sawFirstPost, alreadyViewed, setAlreadyViewed, setSawFirstPost, subscribe, setPostrt, userAddress, setStreamName, posts, setPosts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, setContractInfo, Attach, attaching } =  useAccountContext();
+    const { view, makePost, setView, setSend, subscriberPosts, subscribin, setSubscribin, postrt, createPost, joinNewStream, joinStream, viewPosts, seePosts, sawFirstPost, alreadyViewed, setAlreadyViewed, setSawFirstPost, subscribe, setPostrt, userAddress, setStreamName, posts, setPosts, selectView, selectJoin, selectCreate, help,  Continue,  title, creator,  pstCnt, setPstCnt, deploy, deploying, contractInfo, postName, setPostName, setContractInfo, Attach, attaching } =  useAccountContext();
     const copyToClipborad = async(button) => {
         navigator.clipboard.writeText(contractInfo);
         const origInnerHTML = button.innerHTML;
@@ -33,10 +34,7 @@ const Main = () =>{
     var month = parseInt(today.getMonth() + 1);
     var months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     today=months[month]+' '+today.getDate();
-  const isConnected = window.sessionStorage.getItem('user');
-    if(!isConnected){
-      setView('Connect')
-    } 
+  
     if(sawFirstPost && !joinStream) {
       setView('PostSection');
       setAlreadyViewed(true);
@@ -58,6 +56,8 @@ const Main = () =>{
     )
     } else if(view === 'Connect'){
       return <Connect />
+    } else if(view === 'Landing'){
+      return <Land />
     } else if(view === 'Blogger'){
         return(
             <div className="main">
@@ -126,7 +126,10 @@ const Main = () =>{
         
         </div>
         <button
-          onClick={() => makePost()}
+          onClick={() => {
+            alert('The sky is our limit brothers!!')
+            setSend(true)
+          }}
           className="connectBtn psft"
         >Post</button>
 
@@ -169,15 +172,21 @@ const Main = () =>{
             <div className="main">
                 <p className="choosesubscr nmstr">Subscribe to {postName}</p>
                 <div className="subcribechoid">
-                    <button className="connectBtn yesd" onClick={()=>subscribe('yes')}>Confirm</button>
-                    <button className="connectBtn no" onClick={()=>subscribe('No')}>Leave</button>
+                    <button className="connectBtn yesd" onClick={()=>{
+                      alert('confirm')
+                      setView('AwaitingPost');
+                      alert(subscribin);
+                      }}>Confirm</button>
+                    <button className="connectBtn no" onClick={()=>setView('Subscriber')}>Leave</button>
                 </div>
             </div>
         )
     } else if (view === 'AwaitingPost'){
+      return(
       <div className="main">
                 <p className="choosesubscr nmstr subscribing">Awaiting Post from Author....</p>
             </div>
+      )
     } else if(view === 'SubscriberAttached'){
         return(
         <div className="main">
@@ -215,8 +224,8 @@ const Main = () =>{
         <div className="main">
             <p className="cntipst nmstr">Do you want to continue or stop posting?</p>
             <div className="conchis">
-                <button className="connectBtn" onClick={()=>Continue('Continue')}>Continue</button>
-                <button className="connectBtn" onClick={()=>Continue('Stop')}>Stop</button>
+                <button className="connectBtn cuyt" onClick={()=>Continue('Continue')}>Continue</button>
+                <button className="connectBtn stoyp" onClick={()=>Continue('Stop')}>Stop</button>
             </div>
         </div>
         )

@@ -1,4 +1,4 @@
-import { ConnectAccount, Sub, Main } from './pages';
+import { Main } from './pages';
 import { Header } from './components';
 import { AccountContextProvider } from './pages/AccountContext';
 import {

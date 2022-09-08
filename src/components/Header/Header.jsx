@@ -39,7 +39,7 @@ const Header = () => {
         NFT20,
         NFT21
     ]
-    const { selectJoin, selectCreate, selectView, help } = useAccountContext();
+    const { selectJoin, selectCreate, selectView, setView, help } = useAccountContext();
     return (
         <>
             {
@@ -50,10 +50,10 @@ const Header = () => {
                                 <span className="bar"></span>
                                 <span className="bar"></span>
                             </div>
-                            <Link to="/" className="lolink"><h2 className="logo">NullFun()</h2></Link>
+                            <h2 className="logo" onClick={()=> setView('Landing')}>NullFun()</h2>
                             <div className="contr">
                                 <li className="cids">
-                                    <Link to="/" className="ink"><p className="hdhm lnk">Home</p></Link>
+                                    <p className="hdhm lnk" onClick={()=> setView('BloWrap')}>Home</p>
                                 </li>
                                 <li className="cids">
                                     <p className="hdhm lnk" onClick={()=>selectCreate()}>Create</p>
@@ -77,11 +77,16 @@ const Header = () => {
                                         <span className="drbar"></span>
                                         <span className="drbar"></span>
                                     </div>
-                                    <Link to="/" className="drlolink"><h2 className="logo">NullFun()</h2></Link>
+                                    <h2 className="logo" onClick={()=>{
+                                        toggle()
+                                        setView('Landing');
+                                    }}>NullFun()</h2>
                                 </div>
                                 <ul className="drlinks">
                                     <li className="drlink">
-                                        <Link to="/" onClick={()=>toggle()}  className="ink drink"><p className="iconNav"> Home</p></Link>
+                                        <p className="iconNav" onClick={()=>{
+                                            setView('BloWrap')
+                                        }}> Home</p>
                                     </li>
                                     <li className="drlink">
                                        <p className="drink" onClick={()=>{
@@ -108,23 +113,26 @@ const Header = () => {
                             <span className="bar"></span>
                             <span className="bar"></span>
                         </div>
-                        <Link to="/" className="lolink"><h2 className="logo">NullFun()</h2></Link>
-                        <button className="connectBtn gtstd" onClick={()=>window.location.href="/connect-account"}>Get Started</button>
+                        <h2 className="logo" onClick={()=>setView('Landing')}>NullFun()</h2>
+                        <button className="connectBtn gtstd" onClick={()=>setView('Connect')}>Get Started</button>
                         <div className={show ? "dropdown show" : "dropdown"}>
                             <div className="hdr">
                                 <div className="drclose">
                                     <span className="drbar"></span>
                                     <span className="drbar"></span>
                                 </div>
-                                <Link to="/" className="drlolink"><h2 className="logo">NullFun()</h2></Link>
+                                <h2 className="logo" onClick={()=>setView('Landing')}>NullFun()</h2>
                             </div>
                             <ul className="drlinks">
                                     <li className="drlink">
-                                        <Link to="/"  className="ink drink"onClick={()=>toggle()}><p className="iconNav" onClick={()=>toggle()}/> Home</Link>
+                                        <p className="iconNav" onClick={()=>{
+                                            toggle()
+                                            setView('Landing')
+                                            }}> Home</p>
                                     </li>
                                     <button className="connectBtn gtstd" onClick={()=>{
                                         toggle()
-                                        window.location.href="/connect-account"
+                                        setView('Connect')
                                         }
                                     }>Get Started</button>
                                     <br/>

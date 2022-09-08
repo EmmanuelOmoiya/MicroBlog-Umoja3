@@ -14,7 +14,7 @@ const AccountContextProvider = ({children}) => {
 
     const [address, setAddress] = useState('');
     const [isConnecting, setIsConnecting] = useState(false);
-    const [view, setView] = useState('BloWrap');
+    const [view, setView] = useState('Landing');
     const [contractInfo, setContractInfo] = useState('');
     const [postName, setPostName] = useState('');
     const [pstiinf, setPstiinf] = useState('');
@@ -39,9 +39,10 @@ const AccountContextProvider = ({children}) => {
     const [postrt, setPostrt] = useState('');
     const [addressPs, setAdressPs] = useState('');
     const [contract, setContract] = useState({});
-    const [decision, setDecision] = useState('');
+    const [decision, setDecision] = useState(0);
     const [account, setAccount] = useState({});
     const [subscribin, setSubscribin] = useState();
+    const [send, setSend] = useState();
     let cool;
     const [isDone, setIsDone ]= useState(false);
     const connect = async(address) => {
@@ -115,34 +116,10 @@ const AccountContextProvider = ({children}) => {
         }
     }
 
-
     const common = {
         endStream : async() => setView('End')
     }
 
-    const seeMessage = async (message, streamName, creator) =>{
-        let newPost = {
-            post: message,
-            postName: streamName,
-            author: creator
-        }
-        setSubscriberPosts(newPost);
-        setSeePost(true);
-        setSawFirstPost(true);
-        setView('PostSection');
-        setAlreadyViewed(false);
-        setPosts(newPost);
-    }
-
-    const subscribe = (yesOrNo)=>{
-            if(yesOrNo === 'yes'){
-                setSubscribin(true);
-            } else {
-                setView('Subscriber');
-            }
-    }
-
-    
 
     const Continue = async(desion) => { 
         if(desion === 'Continue') setDecision(0);
@@ -154,15 +131,24 @@ const AccountContextProvider = ({children}) => {
         setView('help');
     }
 
-    const makePost = (postrt) =>{
-        setResolvePostedP(postrt);
-        setIsDone(true);
-        alert('beep boop')
-    }
-
     const setStreamName = async() => {
         setView('Deploy');
     }
+
+    /*async post(){
+        const posffd = await new Promise(resolvePostedP => {
+          setView('createPost')
+          resolvePostedP();
+        });
+
+        setView('uploading');
+        setCreatedFirstPost(true);
+        setPosts(posffd)
+        return posffd;
+      }
+    
+
+    async postThought(postrt) { setResolvePostedP(postrt); }*/
 
     const Poster = {
         ...common,
@@ -171,16 +157,25 @@ const AccountContextProvider = ({children}) => {
             return postName
         },
         post : async()=>{
-            while(isDone === false){
+            const getPost = await new Promise(resolvue =>{
                 setView('createPost');
-            }
+                if(send){
+                    resolvue(postrt);
+                    alert('Hallo!!!');
+                }
+            })
             setView('uploading');
             setCreatedFirstPost(true);
-            setPosts(postrt);
-            return postrt;
+            setPosts(getPost);
+            return getPost;
         },
         continueStream: async()=>{
-            return decision;
+            setView('ContinuePost')
+            return await new Promise(resolveAcceptedP=>{
+                setTimeout(() => {
+                    resolveAcceptedP(0)
+                }, 1900);
+            })
         },
     }
 
@@ -188,66 +183,58 @@ const AccountContextProvider = ({children}) => {
         ...common,
         seeStream: async(streanb) =>{
             setPostName(streanb);
-            setView('chooseSubscribing');
-            if(subscribe === true){
-                setView('AwaitingPost')
-                return true;
-            }
+                return await new Promise(resolve=>{
+                    setView('chooseSubscribing');
+                    if(view === 'AwaitingPost'){
+                        resolve(true);
+                    }
+                })
         },
-        ...seeMessage,
-        ...subscribe
+        seeMessage : async (message, streamName, creator) =>{
+            let newPost = {
+                post: message,
+                postName: streamName,
+                author: creator
+            }
+            setSubscriberPosts(newPost);
+            setSeePost(true);
+            setSawFirstPost(true);
+            setPosts(newPost);
+            alert(newPost);
+            console.log(newPost);
+            setView('PostSection');
+            setAlreadyViewed(false);
+        },
     }
 
-    //let gh = JSON.parse(window.sessionStorage.getItem('account'))
-/*{
-    "type": "BigNumber",
-    "hex": "0x0670f287"
-  }*/
     const deploy = async() =>{
            try{
             alert(account);
             const contract = account.contract(backend);
             alert(contract);
             setDeploying(true);
-            console.log(contract)
             backend.Alice(contract, Poster);
-            alert('deploying');
-            console.log('deploying');
             let ctcInfo = JSON.stringify(await contract.getInfo(), null, 2)
-            alert(ctcInfo)
             setContractInfo(ctcInfo);
-            alert(contractInfo);
-            console.log(contractInfo);
             setView('WaitingForAttacher');
         } catch(error){
             alert(error);
             setDeploying(false);
         }
     }
+
     const Attach = async()=>{
         try{
             setAttaching(true);
-            console.log(contractInfo);
             const contract = account.contract(backend, JSON.parse(contractInfo));
             setView('Subscribing');
             backend.Bob(contract, Subscriber);
             console.log(backend.Bob(contract, Subscriber));
-            console.log('Made Contact');
-            alert(postName);
         } catch(error){
             alert(error);
             console.log(error);
         }
     }
-    
-    {/*if(sawFirstPost && !joinStream){
-        setView('PostSection');
-        setPosts(subscriberPosts);
-        setAlreadyViewed(true);
-    } else {
-        setView('Subscriber');
-        setPosts([]);
-    }*/}
 
     const joinNewStream = () =>{
         setJoinStream(false);
@@ -262,6 +249,8 @@ const AccountContextProvider = ({children}) => {
     return <AccountContext.Provider value={{
         connect,
         viewPosts,
+        setSubscribin,
+        subscribin,
         seePost,
         joinStream,
         network,
@@ -294,13 +283,12 @@ const AccountContextProvider = ({children}) => {
         selectCreate,
         selectView,
         selectJoin,
+        setSend,
         help,
         addressPs,
         userAddress,
-        makePost,
         postrt,
         setPostrt,
-        subscribe,
         joinNewStream,
         setStreamName,
         sawFirstPost,

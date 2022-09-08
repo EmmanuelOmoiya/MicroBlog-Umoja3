@@ -22,3 +22,4 @@ export { default as NFT20 } from './img/pfp20.jpg';
 export { default as NFT21 } from './img/pfp21.jpg';
 export { default as write } from './json/write.json';
 export { default as join } from './json/join.json';
+export { default as Illustration } from './icons/undraw_blogging_re_kl0d.svg';
