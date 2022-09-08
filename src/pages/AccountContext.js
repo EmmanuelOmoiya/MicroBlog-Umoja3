@@ -151,7 +151,6 @@ const AccountContextProvider = ({children}) => {
     async postThought(postrt) { setResolvePostedP(postrt); }*/
 
     const Poster = {
-        ...common,
         streamName : postName,
         createStream : async() => {
             return postName
@@ -161,7 +160,7 @@ const AccountContextProvider = ({children}) => {
                 setView('createPost');
                setTimeout(()=>{
                 resolvue(postrt)
-               }, 4000)
+               }, 10000)
             })
             setView('uploading');
             setCreatedFirstPost(true);
@@ -173,20 +172,20 @@ const AccountContextProvider = ({children}) => {
             return await new Promise(resolveAcceptedP=>{
                 setTimeout(() => {
                     resolveAcceptedP(0)
-                }, 1900);
+                }, 2900);
             })
         },
+        endStream : async() => setView('End')
     }
 
     const Subscriber = {
-        ...common,
         seeStream: async(streanb) =>{
             setPostName(streanb);
                 return await new Promise(resolve=>{
                     setView('chooseSubscribing');
                     setTimeout(()=>{
                         resolve(true);
-                    }, 1000)
+                    }, 2000)
                     /*if(view === 'AwaitingPost'){
                         alert
                         resolve(true);
@@ -204,12 +203,14 @@ const AccountContextProvider = ({children}) => {
             setSubscriberPosts(newPost);
             setSeePost(true);
             setSawFirstPost(true);
-            setPosts(newPost);
+            setPosts([newPost]);
             alert(newPost);
+            console.log(posts);
             console.log(newPost);
             setView('PostSection');
             setAlreadyViewed(false);
         },
+        endStream : async() => setView('End')
     }
 
     const deploy = async() =>{
