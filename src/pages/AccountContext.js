@@ -159,10 +159,9 @@ const AccountContextProvider = ({children}) => {
         post : async()=>{
             const getPost = await new Promise(resolvue =>{
                 setView('createPost');
-                if(send){
-                    resolvue(postrt);
-                    alert('Hallo!!!');
-                }
+               setTimeout(()=>{
+                resolvue(postrt)
+               }, 4000)
             })
             setView('uploading');
             setCreatedFirstPost(true);
@@ -185,9 +184,15 @@ const AccountContextProvider = ({children}) => {
             setPostName(streanb);
                 return await new Promise(resolve=>{
                     setView('chooseSubscribing');
-                    if(view === 'AwaitingPost'){
+                    setTimeout(()=>{
                         resolve(true);
-                    }
+                    }, 1000)
+                    /*if(view === 'AwaitingPost'){
+                        alert
+                        resolve(true);
+                    } else {
+                        alert('Olyu')
+                    }*/
                 })
         },
         seeMessage : async (message, streamName, creator) =>{
@@ -231,6 +236,7 @@ const AccountContextProvider = ({children}) => {
             backend.Bob(contract, Subscriber);
             console.log(backend.Bob(contract, Subscriber));
         } catch(error){
+            setView('Subscriber');
             alert(error);
             console.log(error);
         }

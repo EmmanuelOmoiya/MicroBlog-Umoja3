@@ -195,6 +195,11 @@ font-weight: 600;
         font-size: 1.4rem;
     }
 
+
+    .ccntrinfo{
+        widtg: 100%;
+    }
+
     .inolr{
             width: 100%;
             height: 2.6rem;
@@ -252,5 +257,15 @@ font-weight: 600;
 
     .txtad{
         height: 70vh;
+    }
+
+  
+    .choosesubscr.nmstr.subscribing {
+        max-width: 100%;
+        font-size: 1.75rem;
+    }
+
+    .nmstr{
+        max-width: 100%;
     }
 }
