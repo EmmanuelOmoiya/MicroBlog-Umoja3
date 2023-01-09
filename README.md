@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> A micro blogging service that lets members to publish posts and subscribe to their favorite topics
+<p align="center"> A micro blogging service that lets members to publish posts and subscribe to their favorite topics.
     <br> 
 </p>
 
