@@ -117,4 +117,4 @@ Add notes about how to use the system.
 
 - Reach [Documentation](https://docs.reach.sh) and [Examples](https://github.com/reach-sh/reach-lang/tree/master/examples)
 - [@FestusEbin](https://github.com/FestusEbin) (mentor)
-- Nick Stanford
+- Nick Stanford .
